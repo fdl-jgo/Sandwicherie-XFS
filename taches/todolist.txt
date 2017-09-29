@@ -1,0 +1,28 @@
+Database :
+
+Mise en place		Fidel
+Remplissage		Fidel - Xavier
+Module USER		Fidel
+
+
+Design de base (HTML CSS) : (BOOTSTRAP !)
+
+Accueil				Samir
+Inscription			Xavier
+Login				Xavier		(type="email "name="login" ; type="password" name="password")
+Carte				Samir				
+Customisation sandwich		Samir (A voir)
+Panier				Xavier
+Commande			Xavier
+Espace membre			
+
+
+Code front office :
+
+Inscription				
+Login					
+Carte				
+Customisation sandwich		
+Panier
+Commande
+Espace membre

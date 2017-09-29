@@ -1,4 +1,5 @@
 Database :
+################################################################
 
 Mise en place		Fidel
 Remplissage		Fidel - Xavier
@@ -6,6 +7,7 @@ Module USER		Fidel
 
 
 Design de base (HTML CSS) : (BOOTSTRAP !)
+################################################################
 
 Accueil				Samir
 Inscription			Xavier
@@ -17,12 +19,13 @@ Commande			Xavier
 Espace membre			
 
 
-Code front office :
+Code php - symfony :
+################################################################
 
-Inscription				
-Login					
+Inscription			Fidel			
+Login				Fidel		
 Carte				
 Customisation sandwich		
-Panier
-Commande
-Espace membre
+Panier				Xavier
+Commande			Xavier
+Espace membre			

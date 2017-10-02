@@ -25,35 +25,35 @@ class Utilisateur extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=100)
+     * @ORM\Column(name="nom", type="string", length=100, nullable=true)
      */
     private $nom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prenom", type="string", length=100)
+     * @ORM\Column(name="prenom", type="string", length=100, nullable=true)
      */
     private $prenom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="connected", type="boolean")
+     * @ORM\Column(name="connected", type="boolean", nullable=true, options={"default":true})
      */
     private $connected;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="locked", type="boolean")
+     * @ORM\Column(name="locked", type="boolean", nullable=true, options={"default":false})
      */
     private $locked;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="point_fidelite", type="integer")
+     * @ORM\Column(name="point_fidelite", type="integer", nullable=true, options={"default":0})
      */
     private $pointFidelite;
 

@@ -9,6 +9,9 @@ Module USER		Fidel
 Design de base (HTML CSS) : (BOOTSTRAP !)
 ################################################################
 
+Header	
+Footer	
+
 Accueil				Samir
 Inscription			Xavier
 Login				Xavier		(type="email "name="login" ; type="password" name="password")

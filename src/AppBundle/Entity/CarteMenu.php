@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Pain
+ * CarteMenu
  *
- * @ORM\Table(name="pain")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\PainRepository")
+ * @ORM\Table(name="carte_menu")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\CarteMenuRepository")
  */
-class Pain
+class CarteMenu
 {
     /**
      * @var int
@@ -28,13 +28,6 @@ class Pain
      */
     private $nom;
 
-    /**
-     * @var float
-     *
-     * @ORM\Column(name="prix", type="float", nullable=true)
-     */
-    private $prix;
-
 
     /**
      * Get id
@@ -51,7 +44,7 @@ class Pain
      *
      * @param string $nom
      *
-     * @return Pain
+     * @return CarteMenu
      */
     public function setNom($nom)
     {
@@ -68,29 +61,5 @@ class Pain
     public function getNom()
     {
         return $this->nom;
-    }
-
-    /**
-     * Set prix
-     *
-     * @param float $prix
-     *
-     * @return Pain
-     */
-    public function setPrix($prix)
-    {
-        $this->prix = $prix;
-
-        return $this;
-    }
-
-    /**
-     * Get prix
-     *
-     * @return float
-     */
-    public function getPrix()
-    {
-        return $this->prix;
     }
 }

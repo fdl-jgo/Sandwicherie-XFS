@@ -95,28 +95,4 @@ class LignePanier
     {
         return $this->panier;
     }
-
-    /**
-     * Set sandwich
-     *
-     * @param \AppBundle\Entity\Sandwich $sandwich
-     *
-     * @return LignePanier
-     */
-    public function setSandwich(\AppBundle\Entity\Sandwich $sandwich = null)
-    {
-        $this->sandwich = $sandwich;
-
-        return $this;
-    }
-
-    /**
-     * Get sandwich
-     *
-     * @return \AppBundle\Entity\Sandwich
-     */
-    public function getSandwich()
-    {
-        return $this->sandwich;
-    }
 }

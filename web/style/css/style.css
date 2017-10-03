@@ -1,0 +1,19 @@
+#banner
+{
+	/* Rien de spécial pour l'instant. */	
+}
+
+#top_nav_menu ul
+{
+	list-style-type:none;
+}
+
+#top_nav_menu li
+{
+	display:inline;
+}
+
+footer ul
+{
+	list-style-type:none;
+}

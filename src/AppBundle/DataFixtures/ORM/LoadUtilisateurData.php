@@ -8,6 +8,7 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Faker\Factory;
 
 
 use AppBundle\Entity\Activite;
@@ -31,16 +32,19 @@ class LoadUtilisateurData extends AbstractFixture implements ContainerAwareInter
 
     public function load(ObjectManager $manager)
     {
+        $faker = Factory::create('fr_BE');
 
         $userManager = $this->container->get('fos_user.user_manager');
 
         for ($i = 1; $i <= self::MAX_NB_USER; $i++ ){
 
             $user = $userManager->createUser();
-            $varuser = "user".$i;
-            $user->setUsername($varuser);
-            $user->setEmail($varuser . "@mail.be");
-            $user->setPlainPassword($varuser);
+
+            $username = $faker->userName;
+
+            $user->setUsername($username);
+            $user->setEmail($username . "@mail.be");
+            $user->setPlainPassword($username);
             $user->setEnabled(true);
 
             $manager->persist($user);
@@ -53,6 +57,6 @@ class LoadUtilisateurData extends AbstractFixture implements ContainerAwareInter
     {
         // the order in which fixtures will be loaded
         // the lower the number, the sooner that this fixture is loaded
-        return 1;
+        return 0;
     }
 }

@@ -49,6 +49,14 @@ class Adresse
      */
     private $commentaire;
 
+    /**
+     * @var Ville
+     *
+     * @ORM\ManyToOne(targetEntity="Ville")
+     * @ORM\JoinColumn(name="ville_id", referencedColumnName="id")
+     */
+    private $ville;
+
 
     /**
      * Get id
@@ -155,5 +163,29 @@ class Adresse
     public function getCommentaire()
     {
         return $this->commentaire;
+    }
+
+    /**
+     * Set ville
+     *
+     * @param \AppBundle\Entity\Ville $ville
+     *
+     * @return Adresse
+     */
+    public function setVille(\AppBundle\Entity\Ville $ville = null)
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    /**
+     * Get ville
+     *
+     * @return \AppBundle\Entity\Ville
+     */
+    public function getVille()
+    {
+        return $this->ville;
     }
 }

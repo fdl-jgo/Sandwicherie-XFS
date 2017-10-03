@@ -57,6 +57,14 @@ class Utilisateur extends BaseUser
      */
     private $pointFidelite;
 
+    /**
+     * @var Adresse
+     *
+     * @ORM\ManyToOne(targetEntity="Adresse")
+     * @ORM\JoinColumn(name="adresse_id", referencedColumnName="id")
+     */
+    private $adresse;
+
 
     public function __construct()
     {
@@ -193,5 +201,29 @@ class Utilisateur extends BaseUser
     public function getPointFidelite()
     {
         return $this->pointFidelite;
+    }
+
+    /**
+     * Set adresse
+     *
+     * @param \AppBundle\Entity\Adresse $adresse
+     *
+     * @return Utilisateur
+     */
+    public function setAdresse(\AppBundle\Entity\Adresse $adresse = null)
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    /**
+     * Get adresse
+     *
+     * @return \AppBundle\Entity\Adresse
+     */
+    public function getAdresse()
+    {
+        return $this->adresse;
     }
 }

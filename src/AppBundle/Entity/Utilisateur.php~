@@ -57,6 +57,14 @@ class Utilisateur extends BaseUser
      */
     private $pointFidelite;
 
+    /**
+     * @var Adresse
+     *
+     * @ORM\ManyToOne(targetEntity="Adresse")
+     * @ORM\JoinColumn(name="adresse_id", referencedColumnName="id")
+     */
+    private $adresse;
+
 
     public function __construct()
     {

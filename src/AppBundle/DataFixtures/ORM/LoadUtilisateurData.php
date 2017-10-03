@@ -2,6 +2,7 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
+use AppBundle\Entity\Adresse;
 use AppBundle\Entity\Utilisateur;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
@@ -36,6 +37,11 @@ class LoadUtilisateurData extends AbstractFixture implements ContainerAwareInter
 
         $userManager = $this->container->get('fos_user.user_manager');
 
+        $em = $this->container->get('doctrine.orm.default_entity_manager');
+        $adresseRepository = $em->getRepository(Adresse::class);
+
+        $adresses = $adresseRepository->findAll();
+
         for ($i = 1; $i <= self::MAX_NB_USER; $i++ ){
 
             $user = $userManager->createUser();
@@ -46,6 +52,7 @@ class LoadUtilisateurData extends AbstractFixture implements ContainerAwareInter
             $user->setEmail($username . "@mail.be");
             $user->setPlainPassword($username);
             $user->setEnabled(true);
+            $user->setAdresse($adresses[$i]);
 
             $manager->persist($user);
         }
@@ -57,6 +64,6 @@ class LoadUtilisateurData extends AbstractFixture implements ContainerAwareInter
     {
         // the order in which fixtures will be loaded
         // the lower the number, the sooner that this fixture is loaded
-        return 0;
+        return 3;
     }
 }

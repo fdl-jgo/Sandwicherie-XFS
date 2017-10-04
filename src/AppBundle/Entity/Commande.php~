@@ -51,14 +51,6 @@ class Commande
      */
     private $adresseLivraison;
 
-    /**
-     * @var Utilisateur
-     *
-     * @ORM\ManyToOne(targetEntity="Utilisateur")
-     * @ORM\JoinColumn(name="utilisateur_cmd_id", referencedColumnName="id")
-     */
-    private $utilisateurCmd;
-
 
     /**
      * Get id
@@ -164,29 +156,5 @@ class Commande
     public function getAdresseLivraison()
     {
         return $this->adresseLivraison;
-    }
-
-    /**
-     * Set utilisateurCmd
-     *
-     * @param \AppBundle\Entity\Utilisateur $utilisateurCmd
-     *
-     * @return Commande
-     */
-    public function setUtilisateurCmd(\AppBundle\Entity\Utilisateur $utilisateurCmd = null)
-    {
-        $this->utilisateurCmd = $utilisateurCmd;
-
-        return $this;
-    }
-
-    /**
-     * Get utilisateurCmd
-     *
-     * @return \AppBundle\Entity\Utilisateur
-     */
-    public function getUtilisateurCmd()
-    {
-        return $this->utilisateurCmd;
     }
 }

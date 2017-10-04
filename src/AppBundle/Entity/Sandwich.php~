@@ -32,7 +32,7 @@ class Sandwich
      *
      * @ORM\ManyToMany(targetEntity="Garniture")
      * @ORM\JoinTable(name="sandwich_garniture",
-     *      joinColumns={@ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")},
+     *      joinColumns={@ORM\JoinColumn(name="sandwich_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="garniture_id", referencedColumnName="id")}
      *      )
      */

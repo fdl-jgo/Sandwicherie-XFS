@@ -22,6 +22,13 @@ class LignePanier
     private $id;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="quantite", type="smallint", options={"default":1})
+     */
+    private $quantite;
+
+    /**
      * @var LignePanier
      *
      * @ORM\ManyToOne(targetEntity="Sandwich")
@@ -32,7 +39,7 @@ class LignePanier
     /**
      * @var Panier
      *
-     * @ORM\ManyToOne(targetEntity="Panier")
+     * @ORM\ManyToOne(targetEntity="Panier", inversedBy="lignesPanier")
      * @ORM\JoinColumn(name="panier_id", referencedColumnName="id")
      */
     private $panier;
@@ -94,5 +101,53 @@ class LignePanier
     public function getPanier()
     {
         return $this->panier;
+    }
+
+    /**
+     * Set sandwich
+     *
+     * @param \AppBundle\Entity\Sandwich $sandwich
+     *
+     * @return LignePanier
+     */
+    public function setSandwich(\AppBundle\Entity\Sandwich $sandwich = null)
+    {
+        $this->sandwich = $sandwich;
+
+        return $this;
+    }
+
+    /**
+     * Get sandwich
+     *
+     * @return \AppBundle\Entity\Sandwich
+     */
+    public function getSandwich()
+    {
+        return $this->sandwich;
+    }
+
+    /**
+     * Set quantite
+     *
+     * @param integer $quantite
+     *
+     * @return LignePanier
+     */
+    public function setQuantite($quantite)
+    {
+        $this->quantite = $quantite;
+
+        return $this;
+    }
+
+    /**
+     * Get quantite
+     *
+     * @return integer
+     */
+    public function getQuantite()
+    {
+        return $this->quantite;
     }
 }

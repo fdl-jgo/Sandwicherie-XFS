@@ -5,3 +5,11 @@ app_homepage:
 test_fidel:
     path:     /fidtest
     defaults: { _controller: AppBundle:Default:testfidel }
+
+inscription:
+   path:     /inscription
+   defaults: { _controller: AppBundle:Default:inscription }
+
+login:
+   path:     /identification
+   defaults: { _controller: AppBundle:Default:login }

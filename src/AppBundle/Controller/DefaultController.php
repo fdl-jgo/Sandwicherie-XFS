@@ -27,11 +27,11 @@ class DefaultController extends Controller
 
     public function loginAction()
     {
-    	return $this->render('AppBundle:login_page.html.twig');
+    	return $this->render('AppBundle::login_page.html.twig');
     }
 
     public function inscriptionAction()
     {
-    	return $this->render('AppBundle:inscription_form.html.twig');
+    	return $this->render('AppBundle::inscription_form.html.twig');
     }
 }

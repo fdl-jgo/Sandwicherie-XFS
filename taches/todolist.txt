@@ -1,9 +1,9 @@
 Database :
 ################################################################
 
-Mise en place		Fidel
-Remplissage		Fidel - Xavier
-Module USER		Fidel
+Mise en place		Fidel               FAIT
+Remplissage		Fidel - Xavier          FAIT
+Module USER		Fidel                   FAIT
 
 
 Design de base (HTML CSS) : (BOOTSTRAP !)
@@ -25,8 +25,8 @@ Espace membre
 Code php - symfony :
 ################################################################
 
-Inscription			Fidel			
-Login				Fidel		
+Inscription			Fidel	        FAIT
+Login				Fidel	        FAIT
 Carte				
 Customisation sandwich		
 Panier				Xavier

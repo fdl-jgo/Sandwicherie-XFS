@@ -2,10 +2,6 @@ app_homepage:
     path:     /
     defaults: { _controller: AppBundle:Default:index }
 
-test_fidel:
-    path:     /fidtest
-    defaults: { _controller: AppBundle:Default:testfidel }
-
 inscription:
    path:     /inscription
    defaults: { _controller: AppBundle:Default:inscription }

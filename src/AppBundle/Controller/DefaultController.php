@@ -12,19 +12,6 @@ class DefaultController extends Controller
         return $this->render('AppBundle:Default:index.html.twig');
     }
 
-    public function testfidelAction()
-    {
-
-        $repository = $this->getDoctrine()
-            ->getRepository(Ville::class);
-
-        $val = $repository->findAll();
-        dump($val);
-        return $this->render('AppBundle:Default:testfidel.html.twig', [
-            'var' => ' '
-        ]);
-    }
-
     public function loginAction()
     {
     	return $this->render('AppBundle::login_page.html.twig');

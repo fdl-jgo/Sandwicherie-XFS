@@ -12,6 +12,16 @@ class DefaultController extends Controller
         return $this->render('AppBundle:Default:index.html.twig');
     }
 
+    public function sandwichsAction()
+    {
+        return $this->render('AppBundle:Default:sandwichs.html.twig');
+    }
+
+    public function contactAction()
+    {
+        return $this->render('AppBundle:Default:contact.html.twig');
+    }
+
     public function loginAction()
     {
     	return $this->render('AppBundle::login_page.html.twig');

@@ -2,6 +2,14 @@ app_homepage:
     path:     /
     defaults: { _controller: AppBundle:Default:index }
 
+app_sandwichspage:
+    path:     /sandwichs
+    defaults: { _controller: AppBundle:Default:sandwichs }
+
+app_contactpage:
+    path:     /contact
+    defaults: { _controller: AppBundle:Default:contact }
+
 inscription:
    path:     /inscription
    defaults: { _controller: AppBundle:Default:inscription }

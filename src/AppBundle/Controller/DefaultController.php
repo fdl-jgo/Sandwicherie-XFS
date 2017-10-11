@@ -19,6 +19,6 @@ class DefaultController extends Controller
 
     public function inscriptionAction()
     {
-    	return $this->render('AppBundle::inscription_form.html.twig');
+    	return $this->render('AppBundle:Compte:connexion.html.twig');
     }
 }

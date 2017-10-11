@@ -47,8 +47,26 @@
 
                 <ul class="nav navbar-nav navbar-right">
                     {#class active#}
-                    <li><a href="#">Connexion</a></li>
-                    <li><a href="#">Inscription</a></li>
+                    {% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mon compte <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ path('fos_user_registration_register') }}">S'enregistrer</a></li>
+                                <li><a href="{{ path('fos_user_security_login') }}">Se connecter</a></li>
+                                <li><a href="#">Mot de passe oublié</a></li>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> {{ app.user.username }} <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Parametre</a></li>
+                                <li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
+                            </ul>
+                        </li>
+                    {% endif %}
+
+                    <li><a href="#">Panier</a></li>
                 </ul>
 
             </div><!--/.nav-collapse -->
@@ -64,22 +82,24 @@
 
 {% block footer %}
     <footer>
-        <article>
-            <h3>Informations légales :</h3>
-        </article>
-        <article>
-            <h3>Contact :</h3>
-        </article>
-        <article>
-            <h3>Partenaires &amp; amis : </h3>
-        </article>
-        <article>
-            <h3>Suivez nous !</h3>
-            <ul>
-                <li>Twitter</li>
-                <li>Facebook</li>
-                <li>LinkedIN</li>
-            </ul>
-        </article>
+        <div class="container">
+            <article class="col-md-3">
+                <h3>Informations légales :</h3>
+            </article>
+            <article class="col-md-3">
+                <h3>Contact :</h3>
+            </article>
+            <article class="col-md-3">
+                <h3>Partenaires &amp; amis : </h3>
+            </article>
+            <article class="col-md-3">
+                <h3>Suivez nous !</h3>
+                <ul>
+                    <li>Twitter</li>
+                    <li>Facebook</li>
+                    <li>LinkedIN</li>
+                </ul>
+            </article>
+        </div>
     </footer>
 {% endblock %}

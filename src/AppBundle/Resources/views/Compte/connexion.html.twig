@@ -1,0 +1,14 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="jumbotron">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    {% block custom_fos %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

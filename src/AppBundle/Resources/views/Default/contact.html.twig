@@ -49,7 +49,8 @@
             </div>
         </div>
         <div class="col-md-7">
-
+            <h3>My Google Maps Demo</h3>
+            <div id="map"></div>
         </div>
     </div>
 
@@ -59,7 +60,46 @@
 
 
 {% block javascripts %}
-    {#<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>#}
+    <script>
+        $(document).ready(function(){
+            {#contact form#}
+            $('#characterLeft').text('140 characters left');
+            $('#message').keydown(function () {
+                var max = 140;
+                var len = $(this).val().length;
+                if (len >= max) {
+                    $('#characterLeft').text('You have reached the limit');
+                    $('#characterLeft').addClass('red');
+                    $('#btnSubmit').addClass('disabled');
+                }
+                else {
+                    var ch = max - len;
+                    $('#characterLeft').text(ch + ' characters left');
+                    $('#btnSubmit').removeClass('disabled');
+                    $('#characterLeft').removeClass('red');
+                }
+            });
+
+        });
+
+            {#map#}
+
+        function initMap() {
+            var uluru = {lat: 50.466110, lng: 4.877489};
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                center: uluru
+                });
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: map
+                });
+            }
+    </script>
+
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA65FsuxjmfYhl12chRS5T5mhUz_3iOzEo&callback=initMap">
+    </script>
 
 
 {% endblock %}

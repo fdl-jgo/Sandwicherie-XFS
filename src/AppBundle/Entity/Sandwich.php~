@@ -41,7 +41,7 @@ class Sandwich
     /**
      * @var CarteMenu
      *
-     * @ORM\ManyToOne(targetEntity="CarteMenu")
+     * @ORM\ManyToOne(targetEntity="CarteMenu", inversedBy="sandwichs")
      * @ORM\JoinColumn(name="carte_menu_id", referencedColumnName="id")
      */
     private $carteMenu;
@@ -61,6 +61,14 @@ class Sandwich
      * @ORM\JoinColumn(name="pain_id", referencedColumnName="id")
      */
     private $pain;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->garnitures = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
 
     /**
@@ -95,13 +103,6 @@ class Sandwich
     public function getNom()
     {
         return $this->nom;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->garnitures = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**

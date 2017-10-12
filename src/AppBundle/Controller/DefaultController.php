@@ -19,9 +19,11 @@ class DefaultController extends Controller
 
     public function contactAction()
     {
+
         return $this->render('AppBundle:Default:contact.html.twig');
     }
 
+//    -----------------------------
     public function loginAction()
     {
     	return $this->render('AppBundle::login_page.html.twig');

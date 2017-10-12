@@ -3,6 +3,7 @@
 namespace AppBundle\DataFixtures\ORM;
 
 
+use AppBundle\Entity\CarteMenu;
 use AppBundle\Entity\Garniture;
 use AppBundle\Entity\Pain;
 use AppBundle\Entity\Sandwich;
@@ -39,9 +40,11 @@ class LoadSandwichData extends AbstractFixture implements ContainerAwareInterfac
         $em = $this->container->get('doctrine.orm.default_entity_manager');
         $garnitureRepository = $em->getRepository(Garniture::class);
         $painRepository = $em->getRepository(Pain::class);
+        $carteRepository = $em->getRepository(CarteMenu::class);
 
         $pains = $painRepository->findAll();
         $garnitures = $garnitureRepository->findAll();
+        $carteMenus = $carteRepository->findAll();
 
         $sandwich = new Sandwich();
         $sandwich->setNom('Un sandwich au Jambon fromage');
@@ -51,6 +54,7 @@ class LoadSandwichData extends AbstractFixture implements ContainerAwareInterfac
         $sandwich->addGarniture($garnitures[1]);
         $sandwich->addGarniture($garnitures[2]);
         $sandwich->addGarniture($garnitures[3]);
+        $sandwich->setCarteMenu($carteMenus[0]);
         $manager->persist($sandwich);
 
         $sandwich1 = new Sandwich();
@@ -61,6 +65,7 @@ class LoadSandwichData extends AbstractFixture implements ContainerAwareInterfac
         $sandwich1->addGarniture($garnitures[12]);
         $sandwich1->addGarniture($garnitures[0]);
         $sandwich1->addGarniture($garnitures[4]);
+        $sandwich1->setCarteMenu($carteMenus[0]);
         $manager->persist($sandwich1);
 
         $sandwich2 = new Sandwich();
@@ -71,6 +76,7 @@ class LoadSandwichData extends AbstractFixture implements ContainerAwareInterfac
         $sandwich2->addGarniture($garnitures[15]);
         $sandwich2->addGarniture($garnitures[11]);
         $sandwich2->addGarniture($garnitures[1]);
+        $sandwich2->setCarteMenu($carteMenus[0]);
         $manager->persist($sandwich2);
 
 

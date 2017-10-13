@@ -1,0 +1,163 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block stylesheets_custom %} 
+{% endblock %}
+
+{% block header %}
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ path('app_homepage') }}">SANDWICHERIE-XFS</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="{{ path('app_homepage') }}">Home</a></li>
+                    <li><a href="{{ path('app_sandwichspage') }}">Sandwichs</a></li>
+                    <li><a href="{{ path('app_contactpage') }}">Contact</a></li>
+                    {#<li class="dropdown">#}
+                        {#<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>#}
+                        {#<ul class="dropdown-menu">#}
+                            {#<li><a href="#">Action</a></li>#}
+                            {#<li><a href="#">Another action</a></li>#}
+                            {#<li><a href="#">Something else here</a></li>#}
+                            {#<li role="separator" class="divider"></li>#}
+                            {#<li class="dropdown-header">Nav header</li>#}
+                            {#<li><a href="#">Separated link</a></li>#}
+                            {#<li><a href="#">One more separated link</a></li>#}
+                        {#</ul>#}
+                    {#</li>#}
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    {#class active#}
+                    {% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mon compte <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ path('fos_user_registration_register') }}">S'enregistrer</a></li>
+                                <li><a href="{{ path('fos_user_security_login') }}">Se connecter</a></li>
+                                <li><a href="#">Mot de passe oublié</a></li>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> {{ app.user.username }} <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Parametre</a></li>
+                                <li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
+                            </ul>
+                        </li>
+                    {% endif %}
+
+                    <li><a href="#">Panier</a></li>
+                </ul>
+
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+{% endblock %}
+
+
+{% block body %}
+
+<h2>Vos commandes :</h2>
+<table class="display" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>ID :</th>
+                <th>Date de commande :</th>
+                <th>Nombre articles :</th>
+                <th>Prix :</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>ID :</th>
+                <th>Date de commande :</th>
+                <th>Nombre articles :</th>
+                <th>Prix :</th>
+            </tr>
+        </tfoot>
+        <tbody>
+        	<tr>
+        		<td>1</td>
+        		<td>09/10/2017</td>
+        		<td>2</td>
+        		<td>8€</td>
+        	</tr>
+
+        	<tr>
+        		<td>2</td>
+        		<td>10/10/2017</td>
+        		<td>1</td>
+        		<td>4.5€</td>
+        	</tr>
+
+        	<tr>
+        		<td>3</td>
+        		<td>10/10/2017</td>
+        		<td>1</td>
+        		<td>3.5€</td>
+        	</tr>
+
+        	<tr>
+        		<td>4</td>
+        		<td>12/10/2017</td>
+        		<td>6</td>
+        		<td>31.5€</td>
+        	</tr>
+
+        	<tr>
+        		<td>5</td>
+        		<td>13/10/2017</td>
+        		<td>4</td>
+        		<td>14€</td>
+        	</tr>
+        </tbody>
+
+{% endblock %}
+
+
+
+{% block footer %}
+    <div class="col-xs-12">
+        <footer>
+            <div class="container">
+                <article class="col-md-3">
+                    <h3>Informations légales :</h3>
+                    <p>&copy; 2016 Company, Inc.</p>
+                </article>
+                <article class="col-md-3">
+                    <h3>Contact :</h3>
+                </article>
+                <article class="col-md-3">
+                    <h3>Partenaires &amp; amis : </h3>
+                </article>
+                <article class="col-md-3">
+                    <h3>Suivez nous !</h3>
+                    <ul>
+                        <li>Twitter</li>
+                        <li>Facebook</li>
+                        <li>LinkedIN</li>
+                    </ul>
+                </article>
+            </div>
+        </footer>
+    </div>
+{% endblock %}
+
+
+{% block javascripts %}
+
+{% endblock %}

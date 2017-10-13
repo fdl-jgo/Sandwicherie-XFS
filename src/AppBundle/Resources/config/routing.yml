@@ -17,3 +17,15 @@ inscription:
 login:
    path:     /identification
    defaults: { _controller: AppBundle:Default:login }
+
+panier:
+    path: /panier
+    defaults: {_controller: AppBundle:Default:panier}
+
+commande:
+    path: /commande
+    defaults: {_controller: AppBundle:Default:commande}
+
+historique:
+    path: /historique
+    defaults: {_controller: AppBundle:Default:historique}

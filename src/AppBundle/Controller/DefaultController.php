@@ -31,4 +31,19 @@ class DefaultController extends Controller
     {
     	return $this->render('AppBundle:Compte:connexion.html.twig');
     }
+
+    public function commandeAction()
+    {
+        return $this->render('AppBundle::commande.html.twig');
+    }
+
+     public function historiqueAction()
+    {
+        return $this->render('AppBundle:historique.html.twig');
+    }
+
+     public function panierAction()
+    {
+        return $this->render('AppBundle:panier.html.twig');
+    }
 }

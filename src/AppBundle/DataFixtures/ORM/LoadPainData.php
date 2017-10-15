@@ -33,6 +33,16 @@ class LoadPainData extends AbstractFixture implements OrderedFixtureInterface
         $pain3->setPrix(2.05);
         $manager->persist($pain3);
 
+        $pain4 = new Pain();
+        $pain4->setNom("Bagels");
+        $pain4->setPrix(1.05);
+        $manager->persist($pain4);
+
+        $pain5 = new Pain();
+        $pain5->setNom("Mantou");
+        $pain5->setPrix(1.15);
+        $manager->persist($pain5);
+
 
 
         $manager->flush();

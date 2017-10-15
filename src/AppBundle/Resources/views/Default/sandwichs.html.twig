@@ -71,6 +71,35 @@
                     <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
                 </div>
                 <div class="row">
+                    {% for catalogue in catalogues %}
+                        <h3><u> {{ catalogue.nom }} </u></h3>
+
+                        {% for sandwich in catalogue.sandwichs %}
+
+                            <ul class="list-group col-xs-12 col-lg-4">
+                                <li class="list-group-item active">
+                                    {{ sandwich.nom }}
+                                </li>
+                                <li class="list-group-item">
+                                    1x {{ sandwich.pain.nom }} X {{ sandwich.pain.prix }} €
+                                </li>
+                                {% for garniture in sandwich.garnitures %}
+                                    <li class="list-group-item">
+                                        {{ garniture.nom }}
+                                    </li>
+                                {% endfor %}
+                                <li class="list-group-item">
+                                    Coût €
+                                </li>
+                            </ul>
+
+                        {% endfor %}
+
+                    {% endfor %}
+
+
+                    <hr>
+
                     <div class="col-xs-6 col-lg-4">
                         <h2>Heading</h2>
                         <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>

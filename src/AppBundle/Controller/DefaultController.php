@@ -9,12 +9,22 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
+        $test = $this->get("app.catalogue")
+                    ->getCarteMenu();
+        dump($test);
+        dump($test[0]->getNom());
+        dump($test[0]->getSandwichs()[0]);
+
         return $this->render('AppBundle:Default:index.html.twig');
     }
 
     public function sandwichsAction()
     {
-        return $this->render('AppBundle:Default:sandwichs.html.twig');
+        $catalogues = $this->get('app.catalogue')->getCarteMenu();
+
+        return $this->render('AppBundle:Default:sandwichs.html.twig', [
+            'catalogues' => $catalogues
+        ]);
     }
 
     public function contactAction()

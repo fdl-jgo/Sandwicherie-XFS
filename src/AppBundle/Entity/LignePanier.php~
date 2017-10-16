@@ -29,7 +29,7 @@ class LignePanier
     private $quantite;
 
     /**
-     * @var LignePanier
+     * @var Sandwich
      *
      * @ORM\ManyToOne(targetEntity="Sandwich")
      * @ORM\JoinColumn(name="sandwich_id", referencedColumnName="id")

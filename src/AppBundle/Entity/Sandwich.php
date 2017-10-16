@@ -28,15 +28,6 @@ class Sandwich
      */
     private $nom;
 
-    /**
-     *
-     * @ORM\ManyToMany(targetEntity="Garniture")
-     * @ORM\JoinTable(name="sandwich_garniture",
-     *      joinColumns={@ORM\JoinColumn(name="sandwich_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="garniture_id", referencedColumnName="id")}
-     *      )
-     */
-    private $garnitures;
 
     /**
      * @var CarteMenu
@@ -63,18 +54,24 @@ class Sandwich
     private $pain;
 
     /**
+     *
+     * @ORM\OneToMany(targetEntity="SandwichGarniture", mappedBy="sandwich")
+     */
+    private $garnituresSandwich;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
-        $this->garnitures = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->garnituresSandwich = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -106,40 +103,6 @@ class Sandwich
     }
 
     /**
-     * Add garniture
-     *
-     * @param \AppBundle\Entity\Garniture $garniture
-     *
-     * @return Sandwich
-     */
-    public function addGarniture(\AppBundle\Entity\Garniture $garniture)
-    {
-        $this->garnitures[] = $garniture;
-
-        return $this;
-    }
-
-    /**
-     * Remove garniture
-     *
-     * @param \AppBundle\Entity\Garniture $garniture
-     */
-    public function removeGarniture(\AppBundle\Entity\Garniture $garniture)
-    {
-        $this->garnitures->removeElement($garniture);
-    }
-
-    /**
-     * Get garnitures
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getGarnitures()
-    {
-        return $this->garnitures;
-    }
-
-    /**
      * Set carteMenu
      *
      * @param \AppBundle\Entity\CarteMenu $carteMenu
@@ -161,6 +124,30 @@ class Sandwich
     public function getCarteMenu()
     {
         return $this->carteMenu;
+    }
+
+    /**
+     * Set utilisateurConcepteur
+     *
+     * @param \AppBundle\Entity\Utilisateur $utilisateurConcepteur
+     *
+     * @return Sandwich
+     */
+    public function setUtilisateurConcepteur(\AppBundle\Entity\Utilisateur $utilisateurConcepteur = null)
+    {
+        $this->utilisateurConcepteur = $utilisateurConcepteur;
+
+        return $this;
+    }
+
+    /**
+     * Get utilisateurConcepteur
+     *
+     * @return \AppBundle\Entity\Utilisateur
+     */
+    public function getUtilisateurConcepteur()
+    {
+        return $this->utilisateurConcepteur;
     }
 
     /**
@@ -188,26 +175,36 @@ class Sandwich
     }
 
     /**
-     * Set utilisateurConcepteur
+     * Add garnituresSandwich
      *
-     * @param \AppBundle\Entity\Utilisateur $utilisateurConcepteur
+     * @param \AppBundle\Entity\SandwichGarniture $garnituresSandwich
      *
      * @return Sandwich
      */
-    public function setUtilisateurConcepteur(\AppBundle\Entity\Utilisateur $utilisateurConcepteur = null)
+    public function addGarnituresSandwich(\AppBundle\Entity\SandwichGarniture $garnituresSandwich)
     {
-        $this->utilisateurConcepteur = $utilisateurConcepteur;
+        $this->garnituresSandwich[] = $garnituresSandwich;
 
         return $this;
     }
 
     /**
-     * Get utilisateurConcepteur
+     * Remove garnituresSandwich
      *
-     * @return \AppBundle\Entity\Utilisateur
+     * @param \AppBundle\Entity\SandwichGarniture $garnituresSandwich
      */
-    public function getUtilisateurConcepteur()
+    public function removeGarnituresSandwich(\AppBundle\Entity\SandwichGarniture $garnituresSandwich)
     {
-        return $this->utilisateurConcepteur;
+        $this->garnituresSandwich->removeElement($garnituresSandwich);
+    }
+
+    /**
+     * Get garnituresSandwich
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGarnituresSandwich()
+    {
+        return $this->garnituresSandwich;
     }
 }

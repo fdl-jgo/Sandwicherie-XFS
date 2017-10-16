@@ -75,6 +75,6 @@ class LoadLignePanierData extends AbstractFixture implements ContainerAwareInter
     {
         // the order in which fixtures will be loaded
         // the lower the number, the sooner that this fixture is loaded
-        return 9;
+        return 10;
     }
 }

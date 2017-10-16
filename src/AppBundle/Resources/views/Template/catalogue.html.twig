@@ -1,0 +1,28 @@
+<h3><u> {{ catalogue.nom }} </u></h3>
+
+{% for sandwich in catalogue.sandwichs %}
+    {% set total = 0 %}
+    <ul class="list-group col-xs-12 col-lg-4">
+        <li class="list-group-item active">
+            {{ sandwich.nom }}
+        </li>
+        <li class="list-group-item">
+            1x {{ sandwich.pain.nom }} X {{ sandwich.pain.prix }} €
+            {% set total = sandwich.pain.prix %}
+        </li>
+        {% for garnitureSandwich in sandwich.garnituresSandwich %}
+            <li class="list-group-item">
+                {{ garnitureSandwich.quantite }}x {{ garnitureSandwich.garniture.nom }} X {{ garnitureSandwich.garniture.prix }} €
+                {% set total = total + (garnitureSandwich.quantite * garnitureSandwich.garniture.prix ) %}
+            </li>
+        {% endfor %}
+        <li class="list-group-item">
+            Coût  {{ total }}  €
+        </li>
+        <li class="list-group-item">
+            <a href="" class="badge">Ajouter au panier</a>
+            <a href="" class="badge " data-toggle="modal" data-target=".modal-sandwich">Modifier</a>
+        </li>
+    </ul>
+
+{% endfor %}

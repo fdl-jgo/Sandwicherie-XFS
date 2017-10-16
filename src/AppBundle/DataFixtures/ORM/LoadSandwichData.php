@@ -38,12 +38,10 @@ class LoadSandwichData extends AbstractFixture implements ContainerAwareInterfac
     public function load(ObjectManager $manager)
     {
         $em = $this->container->get('doctrine.orm.default_entity_manager');
-        $garnitureRepository = $em->getRepository(Garniture::class);
         $painRepository = $em->getRepository(Pain::class);
         $carteRepository = $em->getRepository(CarteMenu::class);
 
         $pains = $painRepository->findAll();
-        $garnitures = $garnitureRepository->findAll();
         $carteMenus = $carteRepository->findAll();
 
         $sandwich = new Sandwich();
@@ -51,9 +49,6 @@ class LoadSandwichData extends AbstractFixture implements ContainerAwareInterfac
         $sandwich->setPain($pains[0]);
         $sandwich->setCarteMenu(null);
         $sandwich->setUtilisateurConcepteur(null);
-        $sandwich->addGarniture($garnitures[1]);
-        $sandwich->addGarniture($garnitures[2]);
-        $sandwich->addGarniture($garnitures[3]);
         $sandwich->setCarteMenu($carteMenus[0]);
         $manager->persist($sandwich);
 
@@ -62,9 +57,6 @@ class LoadSandwichData extends AbstractFixture implements ContainerAwareInterfac
         $sandwich1->setPain($pains[1]);
         $sandwich1->setCarteMenu(null);
         $sandwich1->setUtilisateurConcepteur(null);
-        $sandwich1->addGarniture($garnitures[3]);
-        $sandwich1->addGarniture($garnitures[0]);
-        $sandwich1->addGarniture($garnitures[4]);
         $sandwich1->setCarteMenu($carteMenus[0]);
         $manager->persist($sandwich1);
 
@@ -73,9 +65,6 @@ class LoadSandwichData extends AbstractFixture implements ContainerAwareInterfac
         $sandwich3->setPain($pains[3]);
         $sandwich3->setCarteMenu(null);
         $sandwich3->setUtilisateurConcepteur(null);
-        $sandwich3->addGarniture($garnitures[15]);
-        $sandwich3->addGarniture($garnitures[11]);
-        $sandwich3->addGarniture($garnitures[1]);
         $manager->persist($sandwich3);
 
         $sandwich4 = new Sandwich();
@@ -83,9 +72,6 @@ class LoadSandwichData extends AbstractFixture implements ContainerAwareInterfac
         $sandwich4->setPain($pains[3]);
         $sandwich4->setCarteMenu(null);
         $sandwich4->setUtilisateurConcepteur(null);
-        $sandwich4->addGarniture($garnitures[15]);
-        $sandwich4->addGarniture($garnitures[11]);
-        $sandwich4->addGarniture($garnitures[1]);
         $sandwich4->setCarteMenu($carteMenus[0]);
         $manager->persist($sandwich4);
 
@@ -94,9 +80,6 @@ class LoadSandwichData extends AbstractFixture implements ContainerAwareInterfac
         $sandwich5->setPain($pains[4]);
         $sandwich5->setCarteMenu(null);
         $sandwich5->setUtilisateurConcepteur(null);
-        $sandwich5->addGarniture($garnitures[15]);
-        $sandwich5->addGarniture($garnitures[11]);
-        $sandwich5->addGarniture($garnitures[1]);
         $sandwich5->setCarteMenu($carteMenus[0]);
         $manager->persist($sandwich5);
 

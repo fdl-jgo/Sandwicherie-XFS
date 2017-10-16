@@ -28,15 +28,6 @@ class Sandwich
      */
     private $nom;
 
-    /**
-     *
-     * @ORM\ManyToMany(targetEntity="Garniture")
-     * @ORM\JoinTable(name="sandwich_garniture",
-     *      joinColumns={@ORM\JoinColumn(name="sandwich_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="garniture_id", referencedColumnName="id")}
-     *      )
-     */
-    private $garnitures;
 
     /**
      * @var CarteMenu
@@ -63,151 +54,17 @@ class Sandwich
     private $pain;
 
     /**
+     *
+     * @ORM\OneToMany(targetEntity="SandwichGarniture", mappedBy="sandwich")
+     */
+    private $garnituresSandwich;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
-        $this->garnitures = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->garnituresSandwich = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set nom
-     *
-     * @param string $nom
-     *
-     * @return Sandwich
-     */
-    public function setNom($nom)
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-    /**
-     * Get nom
-     *
-     * @return string
-     */
-    public function getNom()
-    {
-        return $this->nom;
-    }
-
-    /**
-     * Add garniture
-     *
-     * @param \AppBundle\Entity\Garniture $garniture
-     *
-     * @return Sandwich
-     */
-    public function addGarniture(\AppBundle\Entity\Garniture $garniture)
-    {
-        $this->garnitures[] = $garniture;
-
-        return $this;
-    }
-
-    /**
-     * Remove garniture
-     *
-     * @param \AppBundle\Entity\Garniture $garniture
-     */
-    public function removeGarniture(\AppBundle\Entity\Garniture $garniture)
-    {
-        $this->garnitures->removeElement($garniture);
-    }
-
-    /**
-     * Get garnitures
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getGarnitures()
-    {
-        return $this->garnitures;
-    }
-
-    /**
-     * Set carteMenu
-     *
-     * @param \AppBundle\Entity\CarteMenu $carteMenu
-     *
-     * @return Sandwich
-     */
-    public function setCarteMenu(\AppBundle\Entity\CarteMenu $carteMenu = null)
-    {
-        $this->carteMenu = $carteMenu;
-
-        return $this;
-    }
-
-    /**
-     * Get carteMenu
-     *
-     * @return \AppBundle\Entity\CarteMenu
-     */
-    public function getCarteMenu()
-    {
-        return $this->carteMenu;
-    }
-
-    /**
-     * Set pain
-     *
-     * @param \AppBundle\Entity\Pain $pain
-     *
-     * @return Sandwich
-     */
-    public function setPain(\AppBundle\Entity\Pain $pain = null)
-    {
-        $this->pain = $pain;
-
-        return $this;
-    }
-
-    /**
-     * Get pain
-     *
-     * @return \AppBundle\Entity\Pain
-     */
-    public function getPain()
-    {
-        return $this->pain;
-    }
-
-    /**
-     * Set utilisateurConcepteur
-     *
-     * @param \AppBundle\Entity\Utilisateur $utilisateurConcepteur
-     *
-     * @return Sandwich
-     */
-    public function setUtilisateurConcepteur(\AppBundle\Entity\Utilisateur $utilisateurConcepteur = null)
-    {
-        $this->utilisateurConcepteur = $utilisateurConcepteur;
-
-        return $this;
-    }
-
-    /**
-     * Get utilisateurConcepteur
-     *
-     * @return \AppBundle\Entity\Utilisateur
-     */
-    public function getUtilisateurConcepteur()
-    {
-        return $this->utilisateurConcepteur;
-    }
 }

@@ -16,7 +16,7 @@ Accueil				Samir		FAIT PAR FIDEL
 Inscription			Xavier		FAIT 
 Login				Xavier		(type="email "name="login" ; type="password" name="password")
 Carte				Samir		FAIT PAR FIDEL		
-Customisation sandwich		Samir (A voir)	A FAIRE
+Customisation sandwich		Samir (A voir)	FAIT PAR FIDEL
 Panier				Xavier		
 Commande			Xavier
 Espace membre			
@@ -27,7 +27,7 @@ Code php - symfony :
 
 Inscription			Fidel	        FAIT
 Login				Fidel	        FAIT
-Carte				
+Carte				Fidel
 Customisation sandwich		
 Panier				Xavier
 Commande			Xavier

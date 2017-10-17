@@ -1,7 +1,7 @@
 Database :
 ################################################################
 
-Mise en place		Fidel               FAIT
+Mise en place		Fidel               	FAIT
 Remplissage		Fidel - Xavier          FAIT
 Module USER		Fidel                   FAIT
 
@@ -9,15 +9,15 @@ Module USER		Fidel                   FAIT
 Design de base (HTML CSS) : (BOOTSTRAP !)
 ################################################################
 
-Header	
-Footer	
+Header						FAIT 
+Footer						FAIT 
 
-Accueil				Samir
-Inscription			Xavier
+Accueil				Samir		FAIT PAR FIDEL
+Inscription			Xavier		FAIT 
 Login				Xavier		(type="email "name="login" ; type="password" name="password")
-Carte				Samir				
-Customisation sandwich		Samir (A voir)
-Panier				Xavier
+Carte				Samir		FAIT PAR FIDEL		
+Customisation sandwich		Samir (A voir)	A FAIRE
+Panier				Xavier		
 Commande			Xavier
 Espace membre			
 
@@ -31,6 +31,6 @@ Carte
 Customisation sandwich		
 Panier				Xavier
 Commande			Xavier
-Espace membre
+Espace membre			Xavier
 
 

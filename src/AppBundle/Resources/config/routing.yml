@@ -19,13 +19,13 @@ login:
    defaults: { _controller: AppBundle:Default:login }
 
 panier:
-    path: /panier
-    defaults: {_controller: AppBundle:Default:panier}
+    path: /compte/panier
+    defaults: {_controller: AppBundle:Compte:panier}
 
 commande:
-    path: /commande
-    defaults: {_controller: AppBundle:Default:commande}
+    path: /compte/commande
+    defaults: {_controller: AppBundle:Compte:commande}
 
 historique:
-    path: /historique
-    defaults: {_controller: AppBundle:Default:historique}
+    path: /compte/historique
+    defaults: {_controller: AppBundle:Compte:historique}

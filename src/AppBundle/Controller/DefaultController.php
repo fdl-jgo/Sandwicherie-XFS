@@ -2,19 +2,16 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Adresse;
 use AppBundle\Entity\Ville;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class DefaultController extends Controller
 {
     // Base
     public function indexAction()
     {
-        $test = $this->get("app.catalogue")
-                    ->getCarteMenu();
-        dump($test);
-        dump($test[0]->getNom());
-        dump($test[0]->getSandwichs()[0]);
 
         return $this->render('AppBundle:Default:index.html.twig');
     }

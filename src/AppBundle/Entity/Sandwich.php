@@ -28,6 +28,13 @@ class Sandwich
      */
     private $nom;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=255, nullable=true)
+     */
+    private $image;
+
 
     /**
      * @var CarteMenu
@@ -206,5 +213,29 @@ class Sandwich
     public function getGarnituresSandwich()
     {
         return $this->garnituresSandwich;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     *
+     * @return Sandwich
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 }

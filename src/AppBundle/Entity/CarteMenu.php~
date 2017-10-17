@@ -21,15 +21,6 @@ class CarteMenu
      */
     private $id;
 
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * @var string
@@ -45,6 +36,16 @@ class CarteMenu
 
     public function __construct() {
         $this->sandwichs = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**

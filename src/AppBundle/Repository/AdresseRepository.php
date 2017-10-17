@@ -10,4 +10,8 @@ namespace AppBundle\Repository;
  */
 class AdresseRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function me()
+    {
+        return "bonn-";
+    }
 }

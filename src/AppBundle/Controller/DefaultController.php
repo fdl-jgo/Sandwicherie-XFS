@@ -22,10 +22,10 @@ class DefaultController extends Controller
     // @Fidel
     public function contactAction()
     {
+
         return $this->render('AppBundle:Default:contact.html.twig');
     }
-    
-    // @Xavier
+
     public function loginAction()
     {
     	return $this->render('AppBundle::login_page.html.twig');

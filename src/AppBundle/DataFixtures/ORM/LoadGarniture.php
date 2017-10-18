@@ -38,9 +38,9 @@ class LoadGarnitureData extends AbstractFixture implements ContainerAwareInterfa
         $typeGarnitureRepository = $em->getRepository(TypeGarniture::class);
 //
 
-        $typeGarnitures = $typeGarnitureRepository->findAll(["id" => ASC]);
+        $typeGarnitures = $typeGarnitureRepository->findAll(["id" => "ASC"]);
 
-        dump($typeGarnitures);
+        // dump($typeGarnitures);
 
         $garniture1 = new Garniture();
         $garniture1->setNom('Tomate');

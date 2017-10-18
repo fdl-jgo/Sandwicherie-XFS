@@ -40,8 +40,8 @@ class LoadSandwichGarnitureData extends AbstractFixture implements ContainerAwar
         $SandwichRepository = $em->getRepository(Sandwich::class);
         $GarnitureRepository = $em->getRepository(Garniture::class);
 
-        $sandwichs = $SandwichRepository->findAll(["id" => ASC]);
-        $garnitures = $GarnitureRepository->findAll(["id" => ASC]);
+        $sandwichs = $SandwichRepository->findAll(["id" => "ASC"]);
+        $garnitures = $GarnitureRepository->findAll(["id" => "ASC"]);
 
 
 
@@ -83,8 +83,8 @@ class LoadSandwichGarnitureData extends AbstractFixture implements ContainerAwar
     private function fireEntity($_sandwichs, $_garnitures, $_idSandwich, $_idGarniture, $_nbQuatite)
     {
         $sandwichGarniture = new SandwichGarniture();
-        $sandwichGarniture->setGarniture($_garnitures[$_idGarniture]-1);
-        $sandwichGarniture->setSandwich($_sandwichs[$_idSandwich]-1);
+        $sandwichGarniture->setGarniture($_garnitures[$_idGarniture]);
+        $sandwichGarniture->setSandwich($_sandwichs[$_idSandwich]);
         $sandwichGarniture->setQuantite($_nbQuatite);
         return $sandwichGarniture;
     }

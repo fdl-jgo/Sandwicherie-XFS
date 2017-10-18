@@ -49,8 +49,8 @@ class LoadVilleData extends AbstractFixture implements OrderedFixtureInterface
         $manager->persist($ville5);
 
         $ville6 = new Ville();
-        $ville->setLocalite('Vedrin');
-        $ville->setCodePostal('5020');
+        $ville6->setLocalite('Vedrin');
+        $ville6->setCodePostal('5020');
         $manager->persist($ville6);
 
         $manager->flush();

@@ -63,7 +63,7 @@ class LoadUtilisateurData extends AbstractFixture implements ContainerAwareInter
         $user->setEmail("Xavier" . "@mail.be");
         $user->setPlainPassword("password");
         $user->setEnabled(true);
-        $user->setAdresse("Rue joseph lemineur 11");
+        $user->setAdresse($adresses[2]);
 
         $manager->flush();
     }

@@ -41,8 +41,8 @@ class LoadSandwichData extends AbstractFixture implements ContainerAwareInterfac
         $painRepository = $em->getRepository(Pain::class);
         $carteRepository = $em->getRepository(CarteMenu::class);
 
-        $pains = $painRepository->findAll(["id" => ASC]);
-        $carteMenus = $carteRepository->findAll(["id" => ASC]);
+        $pains = $painRepository->findAll(["id" => "ASC"]);
+        $carteMenus = $carteRepository->findAll(["id" => "ASC"]);
 
         $sandwich = new Sandwich();
         $sandwich->setNom('Un sandwich au Jambon fromage');

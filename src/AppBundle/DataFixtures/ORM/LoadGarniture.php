@@ -37,7 +37,10 @@ class LoadGarnitureData extends AbstractFixture implements ContainerAwareInterfa
         $em = $this->container->get('doctrine.orm.default_entity_manager');
         $typeGarnitureRepository = $em->getRepository(TypeGarniture::class);
 //
-        $typeGarnitures = $typeGarnitureRepository->findAll();
+
+        $typeGarnitures = $typeGarnitureRepository->findAll(["id" => ASC]);
+
+        dump($typeGarnitures);
 
         $garniture1 = new Garniture();
         $garniture1->setNom('Tomate');

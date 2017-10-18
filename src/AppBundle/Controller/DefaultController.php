@@ -33,6 +33,7 @@ class DefaultController extends Controller
         return $this->render('AppBundle:Default:contact.html.twig');
     }
 
+    // Fidel
     public function loginAction()
     {
     	return $this->render('AppBundle::login_page.html.twig');

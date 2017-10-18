@@ -61,14 +61,14 @@ class LoadSandwichData extends AbstractFixture implements ContainerAwareInterfac
         $manager->persist($sandwich1);
 
         $sandwich3 = new Sandwich();
-        $sandwich3->setNom('Un sandwich au Thom Mayo');
+        $sandwich3->setNom('Un sandwich au Thon Mayo');
         $sandwich3->setPain($pains[3]);
         $sandwich3->setCarteMenu(null);
         $sandwich3->setUtilisateurConcepteur(null);
         $manager->persist($sandwich3);
 
         $sandwich4 = new Sandwich();
-        $sandwich4->setNom('Un sandwich au Thom Mayo');
+        $sandwich4->setNom('Un sandwich végétarien');
         $sandwich4->setPain($pains[3]);
         $sandwich4->setCarteMenu(null);
         $sandwich4->setUtilisateurConcepteur(null);
@@ -76,7 +76,7 @@ class LoadSandwichData extends AbstractFixture implements ContainerAwareInterfac
         $manager->persist($sandwich4);
 
         $sandwich5 = new Sandwich();
-        $sandwich5->setNom('Un sandwich au Thom Mayo');
+        $sandwich5->setNom('Un Club');
         $sandwich5->setPain($pains[4]);
         $sandwich5->setCarteMenu(null);
         $sandwich5->setUtilisateurConcepteur(null);

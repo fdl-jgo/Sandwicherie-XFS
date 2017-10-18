@@ -24,7 +24,7 @@ class LoadVilleData extends AbstractFixture implements OrderedFixtureInterface
         $manager->persist($ville1);
 
         $ville2 = new Ville();
-        $ville2->setLocalite('NAMUR');
+        $ville2->setLocalite('Namur');
         $ville2->setCodePostal('5000');
         $manager->persist($ville2);
 
@@ -48,7 +48,10 @@ class LoadVilleData extends AbstractFixture implements OrderedFixtureInterface
         $ville5->setCodePostal('5004');
         $manager->persist($ville5);
 
-
+        $ville6 = new Ville();
+        $ville->setLocalite('Vedrin');
+        $ville->setCodePostal('5020');
+        $manager->persist($ville6);
 
         $manager->flush();
     }

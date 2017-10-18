@@ -57,6 +57,14 @@ class LoadUtilisateurData extends AbstractFixture implements ContainerAwareInter
             $manager->persist($user);
         }
 
+        $user = $userManager->createUser();
+
+        $user->setUsername("Xavier");
+        $user->setEmail("Xavier" . "@mail.be");
+        $user->setPlainPassword("password");
+        $user->setEnabled(true);
+        $user->setAdresse("Rue joseph lemineur 11");
+
         $manager->flush();
     }
 

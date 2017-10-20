@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Sandwich
@@ -18,6 +19,7 @@ class Sandwich
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Groups({"menu"})
      */
     private $id;
 
@@ -25,6 +27,7 @@ class Sandwich
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=255)
+     * @Groups({"menu"})
      */
     private $nom;
 
@@ -32,6 +35,7 @@ class Sandwich
      * @var string
      *
      * @ORM\Column(name="image", type="string", length=255, nullable=true)
+     * @Groups({"menu"})
      */
     private $image;
 
@@ -49,6 +53,7 @@ class Sandwich
      *
      * @ORM\ManyToOne(targetEntity="Utilisateur")
      * @ORM\JoinColumn(name="utilisateur_concepteur_id", referencedColumnName="id")
+     * @Groups({"menu"})
      */
     private $utilisateurConcepteur;
 
@@ -57,12 +62,14 @@ class Sandwich
      *
      * @ORM\ManyToOne(targetEntity="Pain")
      * @ORM\JoinColumn(name="pain_id", referencedColumnName="id")
+     * @Groups({"menu"})
      */
     private $pain;
 
     /**
      *
      * @ORM\OneToMany(targetEntity="SandwichGarniture", mappedBy="sandwich")
+     * @Groups({"menu"})
      */
     private $garnituresSandwich;
 

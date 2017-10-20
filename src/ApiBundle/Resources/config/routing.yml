@@ -2,6 +2,6 @@ api_homepage:
     path:     /
     defaults: { _controller: ApiBundle:Default:index }
 
-api_carte_menu:
+menus:
     type:     rest
-    resource: ApiBundle\Controller\MenuController
+    resource: ApiBundle\Controller\MenusController

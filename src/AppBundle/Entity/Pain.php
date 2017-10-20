@@ -29,17 +29,25 @@ class Pain
     private $nom;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=255, nullable=true)
+     */
+    private $image;
+
+    /**
      * @var float
      *
      * @ORM\Column(name="prix", type="float", nullable=true)
      */
     private $prix;
 
+    
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -68,6 +76,30 @@ class Pain
     public function getNom()
     {
         return $this->nom;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     *
+     * @return Pain
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 
     /**

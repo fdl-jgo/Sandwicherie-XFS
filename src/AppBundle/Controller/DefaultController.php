@@ -25,6 +25,7 @@ class DefaultController extends Controller
             'catalogues' => $catalogues
         ]);
     }
+    
 
     // @Fidel
     public function contactAction()

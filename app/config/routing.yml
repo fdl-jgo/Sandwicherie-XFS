@@ -5,3 +5,7 @@ app:
     resource: "@AppBundle/Resources/config/routing.yml"
     prefix:   /
 
+api:
+    resource: "@ApiBundle/Resources/config/routing.yml"
+    prefix:   /api
+

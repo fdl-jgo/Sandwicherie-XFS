@@ -28,15 +28,15 @@ class MenusController extends Controller
      */
     public function getMenuAction($menu_id)
     {
-        $menus = $this->getDoctrine()
+        $menu = $this->getDoctrine()
             ->getRepository(CarteMenu::class)
             ->find($menu_id);
 
-        if (empty($menus)) {
+        if (empty($menu)) {
             return $this->json(['message' => 'Place not found'], Response::HTTP_NOT_FOUND);
         }
 
 
-        return $menus;
+        return $menu;
     }
 }

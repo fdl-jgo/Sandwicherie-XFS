@@ -19,7 +19,7 @@ class Pain
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Groups({"menu"})
+     * @Groups({"pain", "menu"})
      */
     private $id;
 
@@ -27,7 +27,7 @@ class Pain
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=255)
-     * @Groups({"menu"})
+     * @Groups({"pain", "menu"})
      */
     private $nom;
 
@@ -35,7 +35,7 @@ class Pain
      * @var string
      *
      * @ORM\Column(name="image", type="string", length=255, nullable=true)
-     * @Groups({"menu"})
+     * @Groups({"pain", "menu"})
      */
     private $image;
 
@@ -43,7 +43,7 @@ class Pain
      * @var float
      *
      * @ORM\Column(name="prix", type="float", nullable=true)
-     * @Groups({"menu"})
+     * @Groups({"pain", "menu"})
      */
     private $prix;
 

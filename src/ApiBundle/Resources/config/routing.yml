@@ -5,3 +5,11 @@ api_homepage:
 menus:
     type:     rest
     resource: ApiBundle\Controller\MenusController
+
+garnitures:
+    type:     rest
+    resource: ApiBundle\Controller\GarnituresController
+
+pains:
+    type:     rest
+    resource: ApiBundle\Controller\PainsController

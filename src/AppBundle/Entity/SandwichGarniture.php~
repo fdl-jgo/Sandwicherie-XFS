@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * LignePanier
@@ -18,6 +19,7 @@ class SandwichGarniture
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Groups({"menu"})
      */
     private $id;
 
@@ -25,6 +27,7 @@ class SandwichGarniture
      * @var int
      *
      * @ORM\Column(name="quantite", type="smallint", options={"default":1})
+     * @Groups({"menu"})
      */
     private $quantite;
 
@@ -40,6 +43,7 @@ class SandwichGarniture
      *
      * @ORM\ManyToOne(targetEntity="Garniture")
      * @ORM\JoinColumn(name="panier_id", referencedColumnName="id")
+     * @Groups({"menu"})
      */
     private $garniture;
 

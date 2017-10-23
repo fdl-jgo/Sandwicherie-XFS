@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * CarteMenu
@@ -18,6 +19,7 @@ class CarteMenu
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Groups({"menu"})
      */
     private $id;
 
@@ -26,11 +28,13 @@ class CarteMenu
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=255)
+     * @Groups({"menu"})
      */
     private $nom;
 
     /**
      * @ORM\OneToMany(targetEntity="Sandwich", mappedBy="carteMenu")
+     * @Groups({"menu"})
      */
     private $sandwichs;
 

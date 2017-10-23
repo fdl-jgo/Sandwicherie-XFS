@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * TypeGarniture
@@ -18,6 +19,7 @@ class TypeGarniture
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Groups({"menu"})
      */
     private $id;
 
@@ -25,6 +27,7 @@ class TypeGarniture
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=255, unique=true)
+     * @Groups({"menu"})
      */
     private $nom;
 

@@ -31,35 +31,27 @@ class CompteController extends Controller
 
 
 
+
+
     // ###################################################################
     // Fonctions pour AJAX / Datatable : Commandes
     // ###################################################################
-    public function getCommandesByIDASCAction()
+
+
+    // Order = ASC || DESC 
+    // Limit = LIMIT clause as INTEGER
+    // Offset = offset of the LIMIT clause as INTEGER
+    public function getCommandesByIDAction($order, $limit, $offset)
     {
 
     }
 
-    public function getCommandesByIDDESCAction()
+    public function getCommandesByDateAction($order, $limit, $offset)
     {
 
     }
 
-    public function getCommandesByDateASCAction()
-    {
-
-    }
-
-    public function getCommandesByDateDESCAction()
-    {
-
-    }
-
-    public function getCommandesByPriceASCAction()
-    {
-
-    }
-
-    public function getCommandesByPriceDESCAction()
+    public function getCommandesByPriceAction($order, $limit, $offset)
     {
 
     }
@@ -68,8 +60,10 @@ class CompteController extends Controller
     // Fonctions pour AJAX / Datatable : Panier
     // ###################################################################
 
-    public function getPanierAction()
+    public function getPanierAction($order, $limit, $offset)
     {
-
+        // Entity manager
+        // REquest
+        // print datas in JSON
     }
 }

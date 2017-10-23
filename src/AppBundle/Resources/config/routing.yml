@@ -29,3 +29,20 @@ commande:
 historique:
     path: /compte/historique
     defaults: {_controller: AppBundle:Compte:historique}
+
+
+commandes_by_price:
+    path: /compte/getCommandesByPrice
+    defaults: {_controller: AppBundle:Compte:getCommandesByPrice}
+
+commandes_by_date:
+    path: /compte/getCommandesByDate
+    defaults: {_controller: AppBundle:Compte:getCommandesByDate}
+
+commandes_by_ID:
+    path: /compte/getCommandesByID
+    defaults: {_controller: AppBundle:Compte:getCommandesByID}
+
+panier: 
+  path: /compte/getPanier
+  defaults: {_controller: AppBundle:Compte:getPanier}

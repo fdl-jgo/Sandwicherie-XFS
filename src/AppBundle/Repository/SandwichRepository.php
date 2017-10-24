@@ -10,4 +10,13 @@ namespace AppBundle\Repository;
  */
 class SandwichRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getSandwichWithId($_id) {
+
+        return $this->getEntityManager()
+                    ->createQuery(
+                        'SELECT s FROM AppBundle:Sandwich s Where s.id = :ids'
+                    )
+                    ->setParameter('ids', $_id)
+                    ->getResult();
+    }
 }

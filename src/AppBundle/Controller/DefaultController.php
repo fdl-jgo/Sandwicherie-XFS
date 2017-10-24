@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Adresse;
+use AppBundle\Entity\Sandwich;
 use AppBundle\Entity\Ville;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -12,6 +13,16 @@ class DefaultController extends Controller
     // Base
     public function indexAction()
     {
+        // id du premier sandiwich
+        $id = $this->getDoctrine()
+            ->getRepository(Sandwich::class)
+            ->findAll()[0]
+            ->getId();
+
+        $garnitures = $this->getDoctrine()
+                        ->getRepository(Sandwich::class)
+                        ->getSandwichWithId($id);  // method qui se trouve dans appbundle/repository/sandwichRepository
+        dump($garnitures);
 
         return $this->render('AppBundle:Default:index.html.twig');
     }

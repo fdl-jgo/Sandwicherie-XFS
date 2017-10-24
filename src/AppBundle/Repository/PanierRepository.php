@@ -10,4 +10,8 @@ namespace AppBundle\Repository;
  */
 class PanierRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function findByID($id)
+	{
+		
+	}
 }

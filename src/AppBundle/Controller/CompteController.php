@@ -26,17 +26,37 @@ class CompteController extends Controller
     // @Xavier
      public function panierAction()
     {
-        return $this->render('AppBundle:Compte:panier.html.twig');
+        // Entity manager
+        // REquest
+        // print datas in JSON
+
+        $em = $this->container->get('doctrine.orm.default_entity_manager');
+        $PanierRepository = $em->getRepository(Panier::class);
+
+        $panier = $PanierRepository->findByID($id);
+
+        // I think the manager (which is an object manager in the datafixtures), has nothing to do in my case.
+        // $manager->persist($commande);
+        // $manager->flush();
+
+        return $this->render('AppBundle:Compte:panier.html.twig', ["panier" => $panier]);
     }
 
+    public function getPanierAction($id)
+    {
+       
 
+
+       
+
+
+    }
 
 
 
     // ###################################################################
     // Fonctions pour AJAX / Datatable : Commandes
     // ###################################################################
-
 
     // Order = ASC || DESC 
     // Limit = LIMIT clause as INTEGER
@@ -55,15 +75,23 @@ class CompteController extends Controller
     {
 
     }
+    
 
-    // ###################################################################
-    // Fonctions pour AJAX / Datatable : Panier
-    // ###################################################################
-
-    public function getPanierAction($order, $limit, $offset)
+    // NO ROUTE DEFINED FOR NOW !
+    public function validateCommande()
     {
-        // Entity manager
-        // REquest
-        // print datas in JSON
+        $em = $this->container->get('doctrine.orm.default_entity_manager');
+        $CommandeRepository = $em->getRepository(Commande::class);
+
+        $commande = new Commande();
+        $commande->setPanier();
+        $commande->setProcessed(true);
+        $commande->setLivree(false);
+
+
+        // I think the manager has nothing to do in my case.
+        // $manager->persist($commande);
+        // $manager->flush();
+
     }
 }

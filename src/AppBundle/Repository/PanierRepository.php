@@ -10,8 +10,11 @@ namespace AppBundle\Repository;
  */
 class PanierRepository extends \Doctrine\ORM\EntityRepository
 {
-	public function findByID($id)
-	{
-		
-	}
+
+	// We should use find($id)
+	// public function getPanierById($id)
+	// {
+	// 	$sql = 'SELECT s FROM AppBundle:Sandwich s Where s.id = :id';
+	// 	return $this->getEntityManager()->createQuery($sql)->setParameter(':id', $id)->getResult();
+	// }
 }

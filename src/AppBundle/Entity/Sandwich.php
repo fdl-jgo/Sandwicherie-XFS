@@ -19,7 +19,7 @@ class Sandwich
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Groups({"menu"})
+     * @Groups({"sandwich", "menu"})
      */
     private $id;
 
@@ -27,7 +27,7 @@ class Sandwich
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=255)
-     * @Groups({"menu"})
+     * @Groups({"sandwich", "menu"})
      */
     private $nom;
 
@@ -35,7 +35,7 @@ class Sandwich
      * @var string
      *
      * @ORM\Column(name="image", type="string", length=255, nullable=true)
-     * @Groups({"menu"})
+     * @Groups({"sandwich", "menu"})
      */
     private $image;
 
@@ -62,14 +62,14 @@ class Sandwich
      *
      * @ORM\ManyToOne(targetEntity="Pain")
      * @ORM\JoinColumn(name="pain_id", referencedColumnName="id")
-     * @Groups({"menu"})
+     * @Groups({"sandwich", "menu"})
      */
     private $pain;
 
     /**
      *
      * @ORM\OneToMany(targetEntity="SandwichGarniture", mappedBy="sandwich")
-     * @Groups({"menu"})
+     * @Groups({"sandwich", "menu"})
      */
     private $garnituresSandwich;
 

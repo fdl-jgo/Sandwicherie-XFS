@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Adresse;
+use AppBundle\Entity\CarteMenu;
 use AppBundle\Entity\Sandwich;
 use AppBundle\Entity\Ville;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -22,7 +23,9 @@ class DefaultController extends Controller
         $garnitures = $this->getDoctrine()
                         ->getRepository(Sandwich::class)
                         ->getSandwichWithId($id);  // method qui se trouve dans appbundle/repository/sandwichRepository
-        dump($garnitures);
+
+        $val = $this->getDoctrine()->getRepository(CarteMenu::class)->getSandwichMenu(11);
+        dump($val);
 
         return $this->render('AppBundle:Default:index.html.twig');
     }

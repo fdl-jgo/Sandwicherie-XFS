@@ -19,7 +19,7 @@ class SandwichGarniture
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Groups({"menu"})
+     * @Groups({"menu", "sandwich"})
      */
     private $id;
 
@@ -27,7 +27,7 @@ class SandwichGarniture
      * @var int
      *
      * @ORM\Column(name="quantite", type="smallint", options={"default":1})
-     * @Groups({"menu"})
+     * @Groups({"menu", "sandwich"})
      */
     private $quantite;
 
@@ -43,7 +43,7 @@ class SandwichGarniture
      *
      * @ORM\ManyToOne(targetEntity="Garniture")
      * @ORM\JoinColumn(name="panier_id", referencedColumnName="id")
-     * @Groups({"menu"})
+     * @Groups({"menu", "sandwich"})
      */
     private $garniture;
 

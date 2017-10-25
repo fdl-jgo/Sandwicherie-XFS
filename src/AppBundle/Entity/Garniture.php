@@ -19,7 +19,7 @@ class Garniture
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Groups({"garniture", "menu"})
+     * @Groups({"garniture", "menu", "sandwich"})
      */
     private $id;
 
@@ -27,7 +27,7 @@ class Garniture
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=255)
-     * @Groups({"garniture", "menu"})
+     * @Groups({"garniture", "menu", "sandwich"})
      */
     private $nom;
 
@@ -35,7 +35,7 @@ class Garniture
      * @var float
      *
      * @ORM\Column(name="prix", type="float")
-     * @Groups({"garniture", "menu"})
+     * @Groups({"garniture", "menu", "sandwich"})
      */
     private $prix;
 
@@ -43,7 +43,7 @@ class Garniture
      *
      * @ORM\ManyToOne(targetEntity="TypeGarniture")
      * @ORM\JoinColumn(name="type_garniture_id", referencedColumnName="id")
-     * @Groups({"garniture", "menu"})
+     * @Groups({"garniture", "menu", "sandwich"})
      */
     private $typeGarniture;
 

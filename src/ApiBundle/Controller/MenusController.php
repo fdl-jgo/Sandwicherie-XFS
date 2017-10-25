@@ -39,4 +39,22 @@ class MenusController extends Controller
 
         return $menu;
     }
+
+    /**
+     * @Rest\View(serializerGroups={"menu"})
+     * @Rest\Get("/menus/{menu_id}/sandwichs", name="api_menus_sandwichs", options={ "method_prefix" = false })
+     */
+    public function getMenuSandwichAction($menu_id)
+    {
+        $menu = $this->getDoctrine()
+            ->getRepository(CarteMenu::class)
+            ->getSandwichMenu($menu_id);
+
+        if (empty($menu)) {
+            return $this->json(['message' => 'Place not found'], Response::HTTP_NOT_FOUND);
+        }
+
+
+        return $menu;
+    }
 }

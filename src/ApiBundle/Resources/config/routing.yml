@@ -13,3 +13,7 @@ garnitures:
 pains:
     type:     rest
     resource: ApiBundle\Controller\PainsController
+
+sandwichs:
+    type:     rest
+    resource: ApiBundle\Controller\SandwichsController

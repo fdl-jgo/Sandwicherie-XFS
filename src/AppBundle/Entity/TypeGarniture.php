@@ -19,7 +19,7 @@ class TypeGarniture
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Groups({"garniture", "menu"})
+     * @Groups({"garniture", "menu", "sandwich"})
      */
     private $id;
 
@@ -27,7 +27,7 @@ class TypeGarniture
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=255, unique=true)
-     * @Groups({"garniture", "menu"})
+     * @Groups({"garniture", "menu", "sandwich"})
      */
     private $nom;
 

@@ -132,7 +132,10 @@ Sandwich = function(_pain, _code, _garniture){
     }
     //*--
     selfSand.changePain = function(_pain){
-        self.prix = self.prix - self.pain.prix + _pain.prix;
+        var _oldPainPrix = selfSand.pain.prix;
+
+        selfSand.pain = _pain;
+        selfSand.prix = selfSand.prix + _pain.prix - _oldPainPrix;
     }
 
 
@@ -156,7 +159,7 @@ var  rowPainCr = function(_pains) {
                 '<td class="id-pain" hidden></td>' +
                 '<td class="quantie-pain">1</td>' +
                 '<td class="nom-pain">' +
-                    '<select class="form-control">' +
+                    '<select class="form-control" onchange="app.painEventCr(this.parentNode.parentNode)" >' +
 
         str
 
@@ -253,6 +256,7 @@ app.crRemoveRow = function(_d) {
     var _qte = _d.children[1].children[0].value  ;
     var _code = _d.children[2].children[0].value  ;
 
+    app.garnituresList.find(function(e){ return e.id == _code ; }) .crSelected = false;
     app.sandwichCr.removeGarniture2(_code, _qte)
 
     $('.modal-sandwich-creer2 .sandwich .prix-total').text( app.sandwichCr.prix.toFixed(2) );
@@ -302,6 +306,19 @@ app.garniEventCr = function(_d){
     _d.children[1].children[0].value = _qte;
 
 }
+app.painEventCr = function(_e) {
+    var _code = _e.children[2].children[0].value;
+
+    var _id = app.pains.findIndex(function(e){ return e.id ==  _code ; })
+    var _newPain = new Pain(app.pains[_id].id, app.pains[_id].nom, app.pains[_id].prix, app.pains[_id].image)
+
+    app.sandwichCr.changePain(_newPain)
+
+    _e.children[3].children[0].innerHTML = app.sandwichCr.pain.prix.toFixed(2)
+    $('.modal-sandwich-creer2 .sandwich .prix-total').text( app.sandwichCr.prix.toFixed(2) );
+
+}
+
 app.domInit = function() {
 
 

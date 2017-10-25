@@ -1,0 +1,35 @@
+<!-- Sandwich Modal creer 2 -->
+<div class="modal fade modal-sandwich-creer2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel1">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Ton Sandwich</h4>
+            </div>
+            <div class="modal-body sandwich">
+                <table id="tableau" class="table">
+                    <thead>
+                    <tr>
+                        <th hidden>Code</th>
+                        <th>Proportion</th>
+                        <th>Intitulé</th>
+                        <th>Prix unité</th>
+                        <th>image</th>
+                        <th>Supprimer</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- ligne du tableau -->
+                    </tbody>
+                </table>
+                <br><label>Prix du panier total</label> : <label class="prix-total"></label>
+                <label id = "nbreLignes" hidden>0</label>
+            </div>
+            <div class="modal-footer" hidden>
+                <button type="button" class="btn btn-primary add-garniture">Ajout ingredient</button>
+                <button type="button" class="btn btn-default cancel-garniture" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success save-garniture">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

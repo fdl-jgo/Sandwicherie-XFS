@@ -33,7 +33,7 @@ class CompteController extends Controller
         $em = $this->container->get('doctrine.orm.default_entity_manager');
         $PanierRepository = $em->getRepository(Panier::class);
 
-        $panier = $PanierRepository->findByID($id);
+        $panier = $PanierRepository->find($id);
 
         // I think the manager (which is an object manager in the datafixtures), has nothing to do in my case.
         // $manager->persist($commande);
@@ -42,20 +42,10 @@ class CompteController extends Controller
         return $this->render('AppBundle:Compte:panier.html.twig', ["panier" => $panier]);
     }
 
-    public function getPanierAction($id)
-    {
-       
-
-
-       
-
-
-    }
-
-
 
     // ###################################################################
     // Fonctions pour AJAX / Datatable : Commandes
+    // @Xavier
     // ###################################################################
 
     // Order = ASC || DESC 

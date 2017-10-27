@@ -44,11 +44,11 @@ class MenusController extends Controller
      * @Rest\View(serializerGroups={"menu"})
      * @Rest\Get("/menus/{menu_id}/sandwichs", name="api_menus_sandwichs", options={ "method_prefix" = false })
      */
-    public function getMenuSandwichAction($menu_id)
+    public function getMenuSandwichsAction($menu_id)
     {
         $menu = $this->getDoctrine()
             ->getRepository(CarteMenu::class)
-            ->getSandwichMenu($menu_id);
+            ->getSandwichsMenu($menu_id);
 
         if (empty($menu)) {
             return $this->json(['message' => 'Place not found'], Response::HTTP_NOT_FOUND);
@@ -56,5 +56,23 @@ class MenusController extends Controller
 
 
         return $menu;
+    }
+
+    /**
+     * @Rest\View(serializerGroups={"menu"})
+     * @Rest\Get("/menus/{menu_id}/sandwichs/{sandwich_id}", name="api_menus_one_sandwichs_one", options={ "method_prefix" = false })
+     */
+    public function getMenuSandwichAction($menu_id, $sandwich_id)
+    {
+        $sandwich = $this->getDoctrine()
+            ->getRepository(CarteMenu::class)
+            ->getSandwichMenu($menu_id, $sandwich_id);
+
+        if (empty($sandwich)) {
+            return $this->json(['message' => 'Place not found'], Response::HTTP_NOT_FOUND);
+        }
+
+
+        return $sandwich;
     }
 }

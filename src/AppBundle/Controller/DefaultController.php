@@ -24,7 +24,7 @@ class DefaultController extends Controller
                         ->getRepository(Sandwich::class)
                         ->getSandwichWithId($id);  // method qui se trouve dans appbundle/repository/sandwichRepository
 
-        $val = $this->getDoctrine()->getRepository(CarteMenu::class)->getSandwichMenu(11);
+        $val = $this->getDoctrine()->getRepository(CarteMenu::class)->getSandwichMenu(11, 51);
         dump($val);
 
         return $this->render('AppBundle:Default:index.html.twig');

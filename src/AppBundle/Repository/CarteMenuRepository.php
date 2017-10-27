@@ -10,7 +10,7 @@ namespace AppBundle\Repository;
  */
 class CarteMenuRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function getSandwichMenu($idMenu)
+    public function getSandwichsMenu($idMenu)
     {
         # code...
         return $this->getEntityManager()
@@ -18,6 +18,18 @@ class CarteMenuRepository extends \Doctrine\ORM\EntityRepository
                 'SELECT s FROM AppBundle:Sandwich s Where s.carteMenu = :ids'
             )
             ->setParameter('ids', $idMenu)
+            ->getResult();
+    }
+
+    public function getSandwichMenu($idMenu, $idSandwich)
+    {
+        # code...
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT s FROM AppBundle:Sandwich s WHERE s.carteMenu = :idc AND s.id = :ids'
+            )
+            ->setParameter('idc', $idMenu)
+            ->setParameter('ids', $idSandwich)
             ->getResult();
     }
 }

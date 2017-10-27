@@ -37,12 +37,27 @@ class CompteController extends Controller
 
         $panier_content = $this->getDoctrine()->getRepository(LignePanier::class)->find_lines($id);
 
+
+        // foreach($panier_content as $key)
+        // {
+        //     $sandwich = $this->getDoctrine()->getRepository(Sandwich::class)->find($key->sandwich);
+        //     dump($sandwich);
+        //     $prixPain = $this->getDoctrine()->getRepository(Pain::class)->find($sandwich->pain);
+
+        //     $prixGarniture = $this->getDoctrine()->getRepository(SandwichGaniture::class)->find($sandwich->);
+            
+        //     $prixTotal = $prixGarniture + $prixPain;
+        //     $key .= ["prix_sandwich" => $prixTotal];
+        // }
+
+        
         // I think the manager (which is an object manager in the datafixtures), has nothing to do in my case.
         // $manager->persist($commande);
         // $manager->flush();
-        return $this->render('AppBundle:Compte:panier.html.twig', ["panier" => $panier]);
 
-        return $this->render('AppBundle:Compte:panier.html.twig');
+        // dump($panier_content);
+        return $this->render('AppBundle:Compte:panier.html.twig', ["panier_content" => $panier_content]);
+
     }
 
 

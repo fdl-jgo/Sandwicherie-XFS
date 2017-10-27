@@ -42,7 +42,7 @@ class SandwichGarniture
      * @var Garniture
      *
      * @ORM\ManyToOne(targetEntity="Garniture")
-     * @ORM\JoinColumn(name="panier_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="garniture_id", referencedColumnName="id")
      * @Groups({"menu", "sandwich"})
      */
     private $garniture;

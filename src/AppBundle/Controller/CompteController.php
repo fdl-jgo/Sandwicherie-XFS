@@ -4,7 +4,10 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Ville;
+use AppBundle\Entity\Panier;
+use AppBundle\Entity\LignePanier;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
 
 class CompteController extends Controller
 {
@@ -24,22 +27,37 @@ class CompteController extends Controller
     }
 
     // @Xavier
-     public function panierAction()
+     public function panierAction($id)
     {
         // Entity manager
         // REquest
         // print datas in JSON
 
-        $em = $this->container->get('doctrine.orm.default_entity_manager');
-        $PanierRepository = $em->getRepository(Panier::class);
+        $panier = $this->getDoctrine()->getRepository(Panier::class)->find($id);
 
-        $panier = $PanierRepository->find($id);
+        $panier_content = $this->getDoctrine()->getRepository(LignePanier::class)->find_lines($id);
 
+
+        // foreach($panier_content as $key)
+        // {
+        //     $sandwich = $this->getDoctrine()->getRepository(Sandwich::class)->find($key->sandwich);
+        //     dump($sandwich);
+        //     $prixPain = $this->getDoctrine()->getRepository(Pain::class)->find($sandwich->pain);
+
+        //     $prixGarniture = $this->getDoctrine()->getRepository(SandwichGaniture::class)->find($sandwich->);
+            
+        //     $prixTotal = $prixGarniture + $prixPain;
+        //     $key .= ["prix_sandwich" => $prixTotal];
+        // }
+
+        
         // I think the manager (which is an object manager in the datafixtures), has nothing to do in my case.
         // $manager->persist($commande);
         // $manager->flush();
 
-        return $this->render('AppBundle:Compte:panier.html.twig', ["panier" => $panier]);
+        // dump($panier_content);
+        return $this->render('AppBundle:Compte:panier.html.twig', ["panier_content" => $panier_content]);
+
     }
 
 
@@ -53,21 +71,29 @@ class CompteController extends Controller
     // Offset = offset of the LIMIT clause as INTEGER
     public function getCommandesByIDAction($order, $limit, $offset)
     {
+        $em = $this->container->get('doctrine.orm.default_entity_manager');
+        $CommandeRepository = $em->getRepository(Commande::class);
+
+        $panier = $PanierRepository->find($id);
+
 
     }
 
     public function getCommandesByDateAction($order, $limit, $offset)
     {
-
+        $em = $this->container->get('doctrine.orm.default_entity_manager');
+        $CommandeRepository = $em->getRepository(Commande::class);
     }
 
     public function getCommandesByPriceAction($order, $limit, $offset)
     {
-
+        $em = $this->container->get('doctrine.orm.default_entity_manager');
+        $CommandeRepository = $em->getRepository(Commande::class);
     }
     
 
     // NO ROUTE DEFINED FOR NOW !
+    // A refaire avec une méthode dans le repo.
     public function validateCommande()
     {
         $em = $this->container->get('doctrine.orm.default_entity_manager');

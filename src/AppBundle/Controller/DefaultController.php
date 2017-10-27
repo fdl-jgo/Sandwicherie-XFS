@@ -14,18 +14,6 @@ class DefaultController extends Controller
     // Base
     public function indexAction()
     {
-        // id du premier sandiwich
-        $id = $this->getDoctrine()
-            ->getRepository(Sandwich::class)
-            ->findAll()[0]
-            ->getId();
-
-        $garnitures = $this->getDoctrine()
-                        ->getRepository(Sandwich::class)
-                        ->getSandwichWithId($id);  // method qui se trouve dans appbundle/repository/sandwichRepository
-
-        $val = $this->getDoctrine()->getRepository(CarteMenu::class)->getSandwichMenu(11, 51);
-        dump($val);
 
         return $this->render('AppBundle:Default:index.html.twig');
     }
@@ -33,6 +21,7 @@ class DefaultController extends Controller
     // @Fidel
     public function sandwichsAction()
     {
+        return $this->render('AppBundle:Default:sandiwichs.html.twig');
         $catalogues = $this->get('app.catalogue')->getCarteMenu();
 
         return $this->render('AppBundle:Default:sandwichs.html.twig', [

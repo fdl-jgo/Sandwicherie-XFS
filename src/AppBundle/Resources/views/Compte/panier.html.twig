@@ -70,9 +70,9 @@
 
 
 {% block body %}
-
+<div class="container">
 <h2>Votre panier :</h2>
-<table class="display" width="100%" cellspacing="0">
+<table class="display table table-hover table-bordered" width="100%" cellspacing="0">
         <thead>
             <tr>
                 <th>ID</th>
@@ -92,30 +92,26 @@
             </tr>
         </tfoot>
         <tbody>
-            <tr>
-                <td>2</td>
-                <td>Club</td>
-                <td>4€</td>
-                <td>3</td>
-                <td>12€</td>
-            </tr>
 
-            <tr>
-                <td>2</td>
-                <td>Custom : poulet, salade, tomates</td>
-                <td>3.5€</td>
-                <td>1</td>
-                <td>3.5€</td>
-            </tr>
 
-            <tr>
-                <td>2</td>
-                <td>Custom : Poulet, dinde, rosbif, avocats, huile d'olive</td>
-                <td>6€</td>
-                <td>1</td>
-                <td>6€</td>
+        {% for item in panier_content %}
+           <tr>
+            <td>{{item.id}}</td>
+            <td>{{item.quantite}}</td>
+            <td>{{item.sandwich.nom}}</td>
+                {# <td>{{item.sandwich.prix}}</td> #}
+                <td>
+                    <span class="glyphicon glyphicon-plus" id="'.$current_id.'-plus"></span>
+                    <input type="number" id="" name="'.$current_id.'-quantiy" value="{{item.quantite}}"/>
+                    <span class="glyphicon glyphicon-minus" id="'.$current_id.'-minus"></span>
+                </td>
+                <td></td>
             </tr>
+        {% endfor %}
+
         </tbody>
+    </table>
+</div>
 
 {% endblock %}
 

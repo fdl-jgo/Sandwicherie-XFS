@@ -19,8 +19,8 @@ login:
    defaults: { _controller: AppBundle:Default:login }
 
 app_panier:
-    path: /compte/panier
-    defaults: {_controller: AppBundle:Compte:panier}
+    path:    /compte/panier/{id}
+    defaults: { _controller: AppBundle:Compte:panier }
 
 commande:
     path: /compte/commande
@@ -29,6 +29,10 @@ commande:
 historique:
     path: /compte/historique
     defaults: {_controller: AppBundle:Compte:historique}
+
+
+
+
 
 
 commandes_by_price:
@@ -40,9 +44,5 @@ commandes_by_date:
     defaults: {_controller: AppBundle:Compte:getCommandesByDate}
 
 commandes_by_ID:
-    path: /compte/getCommandesByID
+    path: /compte/getCommandesById
     defaults: {_controller: AppBundle:Compte:getCommandesByID}
-
-panier: 
-  path: /compte/getPanier
-  defaults: {_controller: AppBundle:Compte:getPanier}

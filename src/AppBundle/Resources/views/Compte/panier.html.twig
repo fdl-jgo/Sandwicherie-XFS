@@ -70,9 +70,9 @@
 
 
 {% block body %}
-
+<div class="container">
 <h2>Votre panier :</h2>
-<table class="display" width="100%" cellspacing="0">
+<table class="display table table-hover table-bordered" width="100%" cellspacing="0">
         <thead>
             <tr>
                 <th>ID</th>
@@ -96,7 +96,9 @@
                 <td>2</td>
                 <td>Club</td>
                 <td>4€</td>
-                <td>3</td>
+                <td><span class="glyphicon glyphicon-plus" id="'.$current_id.'-plus"></span>
+<input type="number" id="" name="'.$current_id.'-quantiy" value="3"/>
+<span class="glyphicon glyphicon-minus" id="'.$current_id.'-minus"></span></td>
                 <td>12€</td>
             </tr>
 
@@ -116,6 +118,8 @@
                 <td>6€</td>
             </tr>
         </tbody>
+    </table>
+</div>
 
 {% endblock %}
 

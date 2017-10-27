@@ -10,4 +10,13 @@ namespace AppBundle\Repository;
  */
 class LignePanierRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function find_lines($panier_id)
+	{
+		$sql = '	SELECT p FROM AppBundle:LignePanier p WHERE p.panier = :id_panier';
+
+		 return $this->getEntityManager()
+            ->createQuery($sql)
+            ->setParameter(':id_panier', $panier_id)
+            ->getResult();
+	}
 }

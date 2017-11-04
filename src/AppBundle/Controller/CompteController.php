@@ -7,7 +7,7 @@ use AppBundle\Entity\Ville;
 use AppBundle\Entity\Panier;
 use AppBundle\Entity\LignePanier;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
+use Symfony\Component\Config\Definition\Exception\Exception;
 
 class CompteController extends Controller
 {
@@ -27,17 +27,44 @@ class CompteController extends Controller
     }
 
     // @Xavier
-     public function panierAction($id)
+    public function panierAction()
     {
         // Entity manager
         // REquest
         // print datas in JSON
 
-        $panier = $this->getDoctrine()->getRepository(Panier::class)->find($id);
+        $id = $this->getUser();
+        // dump($id);
+        $id = $id->getId();
+        dump($id);
 
-        $panier_content = $this->getDoctrine()->getRepository(LignePanier::class)->find_lines($id);
+        // Verification que l'utilisateur est connecté et qu'on peut bien recuperer son id.
+        if(!isset($id) || empty($id))
+        {
+            throw new Exception('Impossible d\'accéder à votre identifiant d\'utilisateur. Etes vous bien connecté !?');
+        }
 
+        // Recuperation du panier en DB. (infos de base)
+        $panier = $this->getDoctrine()->getRepository(Panier::class)->getPanierForUser(3);
+        dump($panier);
 
+        $id_panier = $panier[0]->getId();
+        dump($id_panier);
+
+        // Si aucun panier n'a été trouvé.
+        if(!isset($id_panier) || empty($id_panier))
+        {
+            throw new Exception('Aucun panier vous appartenant n\'a été trouvé !');
+        }
+        else
+        {
+            // Récupération du contenu du panier
+            $panier_content = $this->getDoctrine()->getRepository(LignePanier::class)->find_lines($id_panier);
+        }
+
+        
+
+        // dump($panier_content);
         // foreach($panier_content as $key)
         // {
         //     $sandwich = $this->getDoctrine()->getRepository(Sandwich::class)->find($key->sandwich);
@@ -45,7 +72,7 @@ class CompteController extends Controller
         //     $prixPain = $this->getDoctrine()->getRepository(Pain::class)->find($sandwich->pain);
 
         //     $prixGarniture = $this->getDoctrine()->getRepository(SandwichGaniture::class)->find($sandwich->);
-            
+
         //     $prixTotal = $prixGarniture + $prixPain;
         //     $key .= ["prix_sandwich" => $prixTotal];
         // }

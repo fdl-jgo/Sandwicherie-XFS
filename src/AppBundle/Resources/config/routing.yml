@@ -19,7 +19,8 @@ login:
    defaults: { _controller: AppBundle:Default:login }
 
 app_panier:
-    path:    /compte/panier/{id}
+    # path:    /compte/panier/{id}
+    path:    /compte/panier/
     defaults: { _controller: AppBundle:Compte:panier }
 
 commande:

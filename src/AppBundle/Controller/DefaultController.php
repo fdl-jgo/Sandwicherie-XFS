@@ -21,7 +21,6 @@ class DefaultController extends Controller
     // @Fidel
     public function sandwichsAction()
     {
-        return $this->render('AppBundle:Default:sandiwichs.html.twig');
         $catalogues = $this->get('app.catalogue')->getCarteMenu();
 
         return $this->render('AppBundle:Default:sandwichs.html.twig', [
@@ -33,7 +32,9 @@ class DefaultController extends Controller
     // @Fidel
     public function contactAction()
     {
-
+        $session  = new Session();
+        dump($this->getUser()->getId());
+        dump($session);
         return $this->render('AppBundle:Default:contact.html.twig');
     }
 

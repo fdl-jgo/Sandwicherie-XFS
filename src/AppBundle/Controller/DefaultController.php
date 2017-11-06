@@ -21,6 +21,7 @@ class DefaultController extends Controller
     // @Fidel
     public function sandwichsAction()
     {
+        return $this->render('AppBundle:Default:sandiwichs.html.twig');
         $catalogues = $this->get('app.catalogue')->getCarteMenu();
 
         return $this->render('AppBundle:Default:sandwichs.html.twig', [

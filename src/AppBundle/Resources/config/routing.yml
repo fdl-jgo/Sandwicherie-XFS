@@ -27,7 +27,7 @@ app_panier:
     defaults: { _controller: AppBundle:Compte:panier }
 
 commande:
-    path: /compte/commande
+    path: /compte/commande/{id}
     defaults: {_controller: AppBundle:Compte:commande}
 
 historique:

@@ -10,4 +10,20 @@ namespace AppBundle\Repository;
  */
 class SandwichGarnitureRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function findBySandwichId($sandwich_id)
+	{
+		$em = $this->getEntityManager();
+
+
+		$sql = '
+		SELECT * FROM sandwich_garniture
+		WHERE sandwich_id = :sandwich_id';
+
+		$dbh = $em->getConnection();
+		$query = $dbh->prepare($sql);
+		$results = $query->execute([":sandwich_id" => $sandwich_id]);
+		$results = $query->fetchAll();
+
+		return $results;
+	}
 }

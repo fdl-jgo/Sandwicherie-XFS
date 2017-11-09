@@ -6,6 +6,10 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Ville;
 use AppBundle\Entity\Panier;
 use AppBundle\Entity\LignePanier;
+use AppBundle\Entity\Sandwich;
+use AppBundle\Entity\Pain;
+use AppBundle\Entity\SandwichGarniture;
+use AppBundle\Entity\Garniture;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Config\Definition\Exception\Exception;
 
@@ -35,8 +39,6 @@ class CompteController extends Controller
         // print datas in JSON
 
         $id = $this->getUser();
-        // dump($id);
-        $id = $id->getId();
         dump($id);
 
         // Verification que l'utilisateur est connecté et qu'on peut bien recuperer son id.
@@ -49,34 +51,49 @@ class CompteController extends Controller
         $panier = $this->getDoctrine()->getRepository(Panier::class)->getPanierForUser(3);
         dump($panier);
 
-        $id_panier = $panier[0]->getId();
-        dump($id_panier);
-
         // Si aucun panier n'a été trouvé.
-        if(!isset($id_panier) || empty($id_panier))
+        if(!isset($panier) || empty($panier))
         {
             throw new Exception('Aucun panier vous appartenant n\'a été trouvé !');
         }
         else
         {
             // Récupération du contenu du panier
+            $id_panier = $panier[0]->getId();
             $panier_content = $this->getDoctrine()->getRepository(LignePanier::class)->find_lines($id_panier);
         }
 
-        
+        dump($panier_content);
+        $i = 0;
 
-        // dump($panier_content);
-        // foreach($panier_content as $key)
-        // {
-        //     $sandwich = $this->getDoctrine()->getRepository(Sandwich::class)->find($key->sandwich);
-        //     dump($sandwich);
-        //     $prixPain = $this->getDoctrine()->getRepository(Pain::class)->find($sandwich->pain);
+        foreach($panier_content as $key)
+        {
+            $sandwich = $this->getDoctrine()->getRepository(Sandwich::class)->find($key["sandwich_id"]);
+            $prixPain = $this->getDoctrine()->getRepository(Pain::class)->find($sandwich->getPain()->getId());
+            $prixGarniture = $this->getDoctrine()->getRepository(SandwichGarniture::class)->findBySandwichId($sandwich->getId());
+            
+            $prixPain = $prixPain->getPrix();
 
-        //     $prixGarniture = $this->getDoctrine()->getRepository(SandwichGaniture::class)->find($sandwich->);
-        //     $prixTotal = $prixGarniture + $prixPain;
-        //     $key .= ["prix_sandwich" => $prixTotal];
-        // }
+            $temp_prix = array();
+            foreach ($prixGarniture as $key2)
+            {
+                $prixGarniture2 = $this->getDoctrine()->getRepository(Garniture::class)->find($key2["garniture_id"]);
+                array_push($temp_prix,$prixGarniture2);
+            }
+           
+            $prixTotal = 0;
+            $prixTotal += $prixPain;
+            foreach ($temp_prix as $key3)
+            {
+                $prixTotal += $key3->getPrix();
+            }
 
+            $panier_content[$i]["nom_sandwich"] = $sandwich->getNom();
+            $panier_content[$i]["prix_sandwich"] = $prixTotal;
+
+            $i++;
+        }
+          dump($panier_content);
         
         // I think the manager (which is an object manager in the datafixtures), has nothing to do in my case.
         // $manager->persist($commande);

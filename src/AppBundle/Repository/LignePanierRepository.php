@@ -11,20 +11,29 @@ class LignePanierRepository extends \Doctrine\ORM\EntityRepository
     // PRoblem here !
     public function find_lines($panier_id)
     {
-     	
-        $sql =
-        'SELECT DISTINCT *
-        FROM ligne_panier
-        LEFT JOIN sandwich ON ligne_panier.sandwich_id = sandwich.id
-        LEFT JOIN sandwich_garniture ON sandwich_garniture.sandwich_id = sandwich.id
-        LEFT JOIN pain ON sandwich.pain_id = pain.id
-        WHERE ligne_panier.id = :panier_id';
+     	dump($panier_id);
+
+     	$sql =
+     	'
+     	SELECT * FROM ligne_panier WHERE ligne_panier.panier_id = :panier_id
+     	';
+
+        // $sql =
+        // 'SELECT *, garniture.nom AS nom_garniture, sandwich.nom AS nom_sandwich
+        // FROM ligne_panier
+        // LEFT JOIN sandwich ON ligne_panier.sandwich_id = sandwich.id
+        // LEFT JOIN sandwich_garniture ON sandwich_garniture.sandwich_id = sandwich.id
+        // LEFT JOIN garniture ON sandwich_garniture.garniture_id = garniture.id
+        // LEFT JOIN pain ON sandwich.pain_id = pain.id
+        // WHERE ligne_panier.panier_id = :panier_id';
 
         $em = $this->getEntityManager();
         $dbh = $em->getConnection();
         $query = $dbh->prepare($sql);
         $results = $query->execute([":panier_id" => $panier_id]);
         $results = $query->fetchAll();
+
+        dump($results);
 
         return $results;
     }

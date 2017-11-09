@@ -75,20 +75,18 @@
 <table class="display table table-hover table-bordered" width="100%" cellspacing="0">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Sandwich</th>
                 <th>Prix Unitaire</th>
                 <th>Quantité</th>
-                <th>Total</th>
+                <th>Total € TTC</th>
             </tr>
         </thead>
         <tfoot>
             <tr>
-                <th>ID</th>
                 <th>Sandwich</th>
                 <th>Prix Unitaire</th>
                 <th>Quantité</th>
-                <th>Total</th>
+                <th>Total € TTC</th>
             </tr>
         </tfoot>
         <tbody>
@@ -96,16 +94,14 @@
 
         {% for item in panier_content %}
            <tr>
-            <td>{{item.id}}</td>
-            <td>{{item.quantite}}</td>
-            <td>{{item.sandwich.nom}}</td>
-                {# <td>{{item.sandwich.prix}}</td> #}
+            <td>{{item.nom_sandwich}}</td>
+            <td>{{item.prix_sandwich }}</td>
                 <td>
-                    <span class="glyphicon glyphicon-plus" id="'.$current_id.'-plus"></span>
-                    <input type="number" id="" name="'.$current_id.'-quantiy" value="{{item.quantite}}"/>
-                    <span class="glyphicon glyphicon-minus" id="'.$current_id.'-minus"></span>
-                </td>
-                <td></td>
+{#                     <span class="glyphicon glyphicon-plus" id="'.$current_id.'-plus"></span>
+ #}                    <input type="number" id="" name="'.$current_id.'-quantiy" value="{{item.quantite}}"/>
+{#                     <span class="glyphicon glyphicon-minus" id="'.$current_id.'-minus"></span>
+ #}                </td>
+                <td>{{item.prix_sandwich * item.quantite}} €</td>
             </tr>
         {% endfor %}
 

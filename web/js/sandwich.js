@@ -221,10 +221,27 @@ var  rowGarnitureCr = function(_garnitures) {
 
 //this.parentNode.parentNode.cells[0].innerHTML
 app = new Object();
+app.hostpath = "http://"+ document.location.hostname;
+var _path = '';
+(function () {
+    var _path1 = document.location.pathname.split('/');
+    var _path2 = '';
+    var _idp = 0;
+    _path1.forEach(function (_elt) {
 
-app.hostpath = "http://" + document.location.hostname + "/api/";
+        if((_idp === 0) || (_idp === (_path1.length - 1))) {
+
+        } else {
+            _path2 = _path2+'/'+_elt;
+            console.log('--')
+        }
+        _idp++;
+    });
+
+    app.hostpath = app.hostpath +  _path + _path2 + "/api/";
+})()
+
 console.log(app.hostpath)
-// app.hostpath = "http://sandwicheriexfs.local/api/";
 app.menus = null;
 app.garnitures = null;
 app.pains = null;

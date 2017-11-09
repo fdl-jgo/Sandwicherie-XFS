@@ -472,9 +472,14 @@ $('.modal-sandwich-creer2 .save-garniture').click(function(){
 
 $('.sandwich-catalogue .add-sandwich').click(function (event) {
     event.preventDefault();
-   var _idsand = this.parentNode.parentNode.childNodes[1].childNodes[1].textContent;
-            console.log(this.parentNode.parentNode.childNodes[1].childNodes[1])
-          console.log(app.catSandwichs[_idsand])
+   var _idsand = this.parentNode.parentNode.childNodes[1].childNodes[1].textContent; // innerHTML
+
+    var _sandwichcat = app.catSandwichs.find(function (_elt) {
+
+        return (_elt.id == _idsand);
+    })
+
+          console.log(_sandwichcat)
 
             // app.catSandwich = null;
             // var _catSand1 = new Object();

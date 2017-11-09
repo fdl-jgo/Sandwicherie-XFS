@@ -146,7 +146,6 @@ Sandwich = function(_pain, _code, _garniture){
 
 //---------------------
 
-
 //-----------------------
 var  rowPainCr = function(_pains) {
 
@@ -243,6 +242,9 @@ app.crMaxRow = 10;
 app.crNumbreRow = 0;
 app.crCurrentIndex = 0;
 app.crGarnitureSelectFocus = null;
+
+app.catSandwich = null;
+app.panier = [];
 
 
 app.garnituresList = null; // pas encore utilise
@@ -446,6 +448,39 @@ $('.modal-sandwich-creer2 .save-garniture').click(function(){
         alert("sandwich is save" + "\n" + "sandwich:  "+ app.sandwichCr.prix)
     }
 });
+
+$('.sandwich-catalogue .add-sandwich').click(function (event) {
+    event.preventDefault();
+   var _idsand = this.parentNode.parentNode.childNodes[1].childNodes[1].textContent;
+
+    //Get Garniture
+    $.get( app.hostpath+"sandwichs/"+ _idsand.toString(), function() {
+        console.log( "success" );
+    })
+        .done(function(data) {
+            console.log( "second success" );
+            console.log(_catSand1)
+            app.catSandwich = null;
+            var _catSand1 = new Object();
+            _catSand1.all = data;
+            _catSand1.nom = data.nom;
+            _catSand1.id = data.id;
+            _catSand1.prix = data.pain.prix;
+            data.garnituresSandwich.forEach(function(element) {
+
+                _catSand1.prix = _catSand1.prix + ( element.quantite * (element.garniture.prix) );
+
+            });
+            app.catSandwich = _catSand1;
+        })
+        .fail(function() {
+            console.log( "error" );
+        })
+        .always(function() {
+            console.log( "finished" );
+        });
+
+})
 
 
 

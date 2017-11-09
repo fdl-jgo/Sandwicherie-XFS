@@ -37,6 +37,13 @@ class DefaultController extends Controller
         return $this->render('AppBundle:Default:contact.html.twig');
     }
 
+    // @Fidel
+    public function profilAction()
+    {
+
+        return $this->render('AppBundle:Default:profil.html.twig');
+    }
+
     // Fidel
     public function loginAction()
     {

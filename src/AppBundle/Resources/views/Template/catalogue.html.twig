@@ -1,5 +1,5 @@
 <h3><u> {{ catalogue.nom }} </u></h3>
-
+<div class="id-catalogue">{{ catalogue.id }}</div>
 {% for sandwich in catalogue.sandwichs %}
     {% set total = 0 %}
     <ul class="list-group col-xs-12 col-lg-4 sandwich-catalogue">
@@ -27,7 +27,7 @@
             Coût  {{ total }}  €
         </li>
         <li class="list-group-item">
-            <a href="" class="badge add-sandwich">Ajouter au panier</a>
+            <a href="" class="badge add-sandwich elt-hidden">Ajouter au panier</a>
             {#<a href="" class="badge " data-toggle="modal" data-target=".modal-sandwich">Modifier</a>#}
         </li>
     </ul>

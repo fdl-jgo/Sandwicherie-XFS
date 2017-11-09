@@ -243,7 +243,7 @@ app.crNumbreRow = 0;
 app.crCurrentIndex = 0;
 app.crGarnitureSelectFocus = null;
 
-app.catSandwich = null;
+app.catSandwichs = null;
 app.panier = [];
 
 
@@ -407,6 +407,27 @@ app.start = function(){
         });
 
 
+    // sandwich du catalogue
+        var _idCatalogue = $('.id-catalogue')[0].textContent;
+
+    $.get( app.hostpath+"menus/"+_idCatalogue.toString()+"/sandwichs", function() {
+        console.log( "success==" );
+    })
+        .done(function(data) {
+            console.log( "second success===========" );
+            app.catSandwichs = data;
+            $('.sandwich-catalogue .badge.add-sandwich').removeClass('elt-hidden')
+
+
+        })
+        .fail(function() {
+            console.log( "error" );
+        })
+        .always(function() {
+            console.log( "finished" );
+        });
+
+
 }
 app.start();
 
@@ -452,33 +473,22 @@ $('.modal-sandwich-creer2 .save-garniture').click(function(){
 $('.sandwich-catalogue .add-sandwich').click(function (event) {
     event.preventDefault();
    var _idsand = this.parentNode.parentNode.childNodes[1].childNodes[1].textContent;
+            console.log(this.parentNode.parentNode.childNodes[1].childNodes[1])
+          console.log(app.catSandwichs[_idsand])
 
-    //Get Garniture
-    $.get( app.hostpath+"sandwichs/"+ _idsand.toString(), function() {
-        console.log( "success" );
-    })
-        .done(function(data) {
-            console.log( "second success" );
-            console.log(_catSand1)
-            app.catSandwich = null;
-            var _catSand1 = new Object();
-            _catSand1.all = data;
-            _catSand1.nom = data.nom;
-            _catSand1.id = data.id;
-            _catSand1.prix = data.pain.prix;
-            data.garnituresSandwich.forEach(function(element) {
+            // app.catSandwich = null;
+            // var _catSand1 = new Object();
+            // _catSand1.all = data;
+            // _catSand1.nom = data.nom;
+            // _catSand1.id = data.id;
+            // _catSand1.prix = data.pain.prix;
+            // data.garnituresSandwich.forEach(function(element) {
+            //
+            //     _catSand1.prix = _catSand1.prix + ( element.quantite * (element.garniture.prix) );
+            //
+            // });
+            // app.catSandwich = _catSand1;
 
-                _catSand1.prix = _catSand1.prix + ( element.quantite * (element.garniture.prix) );
-
-            });
-            app.catSandwich = _catSand1;
-        })
-        .fail(function() {
-            console.log( "error" );
-        })
-        .always(function() {
-            console.log( "finished" );
-        });
 
 })
 

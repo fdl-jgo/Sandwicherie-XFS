@@ -20,9 +20,11 @@ class CompteController extends Controller
     // Fonctions de vues / pages 
 
     // @Xavier
-    public function commandeAction()
+    public function commandeAction($id)
     {
-        return $this->render('AppBundle:Compte:commande.html.twig');
+        $commande = $this->getDoctrine()->getRepository(Commande::class)->find($id);
+        dump($commande);
+        return $this->render('AppBundle:Compte:commande.html.twig', ["commande" => $commande]);
     }
 
     // @Xavier

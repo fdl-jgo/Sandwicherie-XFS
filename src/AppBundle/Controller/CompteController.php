@@ -41,7 +41,7 @@ class CompteController extends Controller
         // print datas in JSON
 
         $id = $this->getUser();
-        dump($id);
+        // dump($id);
 
         // Verification que l'utilisateur est connecté et qu'on peut bien recuperer son id.
         if(!isset($id) || empty($id))
@@ -51,7 +51,7 @@ class CompteController extends Controller
 
         // Recuperation du panier en DB. (infos de base)
         $panier = $this->getDoctrine()->getRepository(Panier::class)->getPanierForUser(3);
-        dump($panier);
+        // dump($panier);
 
         // Si aucun panier n'a été trouvé.
         if(!isset($panier) || empty($panier))
@@ -65,7 +65,7 @@ class CompteController extends Controller
             $panier_content = $this->getDoctrine()->getRepository(LignePanier::class)->find_lines($id_panier);
         }
 
-        dump($panier_content);
+        // dump($panier_content);
         $i = 0;
 
         foreach($panier_content as $key)
@@ -95,13 +95,8 @@ class CompteController extends Controller
 
             $i++;
         }
-          dump($panier_content);
-        
-        // I think the manager (which is an object manager in the datafixtures), has nothing to do in my case.
-        // $manager->persist($commande);
-        // $manager->flush();
-
         // dump($panier_content);
+        
         return $this->render('AppBundle:Compte:panier.html.twig', ["panier_content" => $panier_content]);
 
     }
@@ -121,8 +116,6 @@ class CompteController extends Controller
         $CommandeRepository = $em->getRepository(Commande::class);
 
         $panier = $PanierRepository->find($id);
-
-
     }
 
     public function getCommandesByDateAction($order, $limit, $offset)
@@ -137,10 +130,20 @@ class CompteController extends Controller
         $CommandeRepository = $em->getRepository(Commande::class);
     }
     
+    public function saveCurrentPanierAction()
+    {
+        $id = $this->getUser();
+        if(!isset($id) || empty($id))
+        {
+            throw new Exception('Impossible d\'accéder à votre identifiant d\'utilisateur. Etes vous bien connecté !?');
+        }
+
+        dump($_POST);
+    }
 
     // NO ROUTE DEFINED FOR NOW !
     // A refaire avec une méthode dans le repo.
-    public function validateCommande()
+    public function validateCommandeAction()
     {
         $em = $this->container->get('doctrine.orm.default_entity_manager');
         $CommandeRepository = $em->getRepository(Commande::class);

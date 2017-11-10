@@ -23,4 +23,18 @@ class PanierRepository extends \Doctrine\ORM\EntityRepository
 		$sql = 'SELECT p FROM AppBundle:Panier p WHERE p.utilisateur = :id';
 		return $this->getEntityManager()->createQuery($sql)->setParameter(':id', $user_id)->getResult();
 	}
+
+	public function savePanierForUser($user_id, $panier_infos)
+	{
+		$sql = "
+					INSERT INTO
+					VALUES 
+		";
+
+		$em = $this->getEntityManager();
+		$dbh = $em->getConnection();
+		
+		$query = $dbh->prepare($sql);
+		$query->execute();
+	}
 }

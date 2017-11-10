@@ -39,6 +39,13 @@ historique:
 
 
 
+save_current_panier:
+    path: /compte/saveCurrentPanier/
+    defaults : {_controller: AppBundle:Compte:saveCurrentPanier}
+
+
+
+
 commandes_by_price:
     path: /compte/getCommandesByPrice
     defaults: {_controller: AppBundle:Compte:getCommandesByPrice}

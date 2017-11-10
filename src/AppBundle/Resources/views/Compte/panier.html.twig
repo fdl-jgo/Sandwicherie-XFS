@@ -73,6 +73,7 @@
 <div class="container">
 <h2>Votre panier :</h2>
 <table class="display table table-hover table-bordered">
+    <input type="hidden" id="ajax-path" value="{{ path('save_current_panier') }}"/>
         <thead>
             <tr>
                 <th>Sandwich</th>
@@ -98,7 +99,7 @@
             <td>{{item.prix_sandwich }}</td>
                 <td>
 {#                     <span class="glyphicon glyphicon-plus" id="'.$current_id.'-plus"></span>
- #}                    <input type="number" id="" name="'.$current_id.'-quantiy" value="{{item.quantite}}"/>
+ #}                    <input type="number" class="sandwich-quantity" id="sandwich-{{ item.id }}" name="sandwich-{{ item.id }}" value="{{item.quantite}}"/>
 {#                     <span class="glyphicon glyphicon-minus" id="'.$current_id.'-minus"></span>
  #}                </td>
                 <td>{{item.prix_sandwich * item.quantite}} €</td>
@@ -142,5 +143,5 @@
 
 
 {% block javascripts %}
-
+        <script src="{{ asset('js/panier.js')}}"></script>
 {% endblock %}

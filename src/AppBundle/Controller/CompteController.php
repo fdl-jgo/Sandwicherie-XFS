@@ -10,6 +10,7 @@ use AppBundle\Entity\Sandwich;
 use AppBundle\Entity\Pain;
 use AppBundle\Entity\SandwichGarniture;
 use AppBundle\Entity\Garniture;
+use AppBundle\Entity\Commande;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,7 +32,16 @@ class CompteController extends Controller
     // @Xavier
      public function historiqueAction()
     {
-        return $this->render('AppBundle:Compte:historique.html.twig');
+        $id = $this->getUser();
+        if(!isset($id) || empty($id))
+        {
+            throw new Exception('Impossible d\'accéder à votre identifiant d\'utilisateur. Etes vous bien connecté !?');
+        }
+
+
+        $liste_commande = $this->getDoctrine()->getRepository(Commande::class)->getAllCommandesForUser($id);
+        dump($liste_commande);
+        return $this->render('AppBundle:Compte:historique.html.twig', ["liste_commande" => $liste_commande]);
     }
 
     // @Xavier
@@ -145,20 +155,20 @@ class CompteController extends Controller
 
     // NO ROUTE DEFINED FOR NOW !
     // A refaire avec une méthode dans le repo.
-    public function validateCommandeAction()
+    public function validerCommandeAction()
     {
-        $em = $this->container->get('doctrine.orm.default_entity_manager');
-        $CommandeRepository = $em->getRepository(Commande::class);
+        // $em = $this->container->get('doctrine.orm.default_entity_manager');
+        // $CommandeRepository = $em->getRepository(Commande::class);
 
-        $commande = new Commande();
-        $commande->setPanier();
-        $commande->setProcessed(true);
-        $commande->setLivree(false);
+        // $commande = new Commande();
+        // $commande->setPanier();
+        // $commande->setProcessed(true);
+        // $commande->setLivree(false);
 
 
         // I think the manager has nothing to do in my case.
         // $manager->persist($commande);
         // $manager->flush();
-
+        return new Response("true");
     }
 }

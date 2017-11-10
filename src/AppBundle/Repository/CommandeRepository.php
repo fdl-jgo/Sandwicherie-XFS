@@ -10,4 +10,16 @@ namespace AppBundle\Repository;
  */
 class CommandeRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function getAllCommandesForUser($id_user)
+	{
+		$sql = " SELECT * FROM commande WHERE id = :id_user ORDER BY id DESC";
+
+		$em = $this->getEntityManager();
+		$dbh = $em->getConnection();
+		$query = $dbh->prepare($sql);
+		$results = $query->execute([":id_user" => $id_user]);
+		$results = $query->fetchAll();
+
+		return $results;
+	}
 }

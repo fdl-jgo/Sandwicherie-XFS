@@ -26,6 +26,13 @@ app_panier:
     path:    /compte/panier
     defaults: { _controller: AppBundle:Compte:panier }
 
+
+
+
+valider_commande:
+    path: /compte/validerCommande/{id}
+    defaults: {_controller: AppBundle:Compte:validerCommande}
+
 commande:
     path: /compte/commande/{id}
     defaults: {_controller: AppBundle:Compte:commande}

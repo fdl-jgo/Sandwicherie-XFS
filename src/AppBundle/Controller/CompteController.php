@@ -12,6 +12,7 @@ use AppBundle\Entity\SandwichGarniture;
 use AppBundle\Entity\Garniture;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Config\Definition\Exception\Exception;
+use Symfony\Component\HttpFoundation\Response;
 
 
 class CompteController extends Controller
@@ -97,7 +98,7 @@ class CompteController extends Controller
         }
         // dump($panier_content);
         
-        return $this->render('AppBundle:Compte:panier.html.twig', ["panier_content" => $panier_content]);
+        return $this->render('AppBundle:Compte:panier.html.twig', ["panier_content" => $panier_content, "panier_id" => $id_panier]);
 
     }
 
@@ -138,7 +139,8 @@ class CompteController extends Controller
             throw new Exception('Impossible d\'accéder à votre identifiant d\'utilisateur. Etes vous bien connecté !?');
         }
 
-        dump($_POST);
+        return new Response('true');
+        // dump($_POST);
     }
 
     // NO ROUTE DEFINED FOR NOW !

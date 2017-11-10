@@ -72,6 +72,7 @@
 {% block body %}
 <div class="container">
 <h2>Votre panier :</h2>
+<div id="save-message"></div>
 <table class="display table table-hover table-bordered">
     <input type="hidden" id="ajax-path" value="{{ path('save_current_panier') }}"/>
         <thead>
@@ -98,20 +99,23 @@
             <td>{{item.nom_sandwich}}</td>
             <td>{{item.prix_sandwich }}</td>
                 <td>
-{#                     <span class="glyphicon glyphicon-plus" id="'.$current_id.'-plus"></span>
- #}                    <input type="number" class="sandwich-quantity" id="sandwich-{{ item.id }}" name="sandwich-{{ item.id }}" value="{{item.quantite}}"/>
-{#                     <span class="glyphicon glyphicon-minus" id="'.$current_id.'-minus"></span>
- #}                </td>
+                    <input type="number" class="sandwich-quantity" id="sandwich-{{ item.id }}" name="sandwich-{{ item.id }}" value="{{item.quantite}}"/>
+              </td>
                 <td>{{item.prix_sandwich * item.quantite}} €</td>
             </tr>
         {% endfor %}
 
+        
         </tbody>
     </table>
+    <div class="text-center">
+        <button class="btn btn-primary" type="button" id="save-current-panier">Enregistrer mon panier</button>
+        <a class="btn btn-primary" role="button" href="{{ path('commande', {'id' : panier_id}) }}">Commander</a>
+    </div>
+
 </div>
 
 {% endblock %}
-
 
 
 {% block footer %}

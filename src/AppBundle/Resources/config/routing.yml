@@ -42,7 +42,7 @@ historique:
 save_current_panier:
     path: /compte/saveCurrentPanier/
     defaults : {_controller: AppBundle:Compte:saveCurrentPanier}
-
+    methods:  [POST]
 
 
 

@@ -1,3 +1,5 @@
+
+
 $(function() {
 
 var panier = [];
@@ -20,13 +22,34 @@ function saveCurrentPanier()
 	// console.log("pathname : "+ window.location.pathname);
 	// console.log("url : "+ window.location.href);
 	// console.log("domain : "+ document.domain);
-	console.log(document.domain+$("#ajax-path").val());
+	// var path = document.domain+$("#ajax-path").val();
+
+	var path = $("#ajax-path").val();
+
+	console.log(path);
 
 	$.ajax({
 		  method: "POST",
-		  url: document.domain+$("#ajax-path").val(),
-		  data: panier
+		  url: path,
+		  data: JSON.stringify(panier),
+		  contentType: "application/json; charset=utf-8",
+          dataType: "json"
 		}).done(function(result){
+			if(result){
+				$("#save-message").html('<div class="alert alert-success" role="alert"> Panier sauvegardé ! </div>');
+
+				setTimeout(function() {
+					var fading_out = 1000;
+				    $('#save-message').fadeOut(fading_out);
+
+				    setTimeout(function(){
+						$('#save-message').empty();
+				    }, fading_out);
+				    
+				}, 3000);
+
+			}
+
 			console.log(result);
 			console.log(panier);
 		});
@@ -36,7 +59,8 @@ $(".sandwich-quantity").change(function(){
 	saveCurrentPanier();
 });
 
-
+$("#save-current-panier").click(function(){
+	saveCurrentPanier();
 });
 
-
+});

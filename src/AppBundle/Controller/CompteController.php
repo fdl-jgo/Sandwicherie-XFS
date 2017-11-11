@@ -209,7 +209,7 @@ class CompteController extends Controller
         {
             // Récupération du contenu du panier
             $id_panier = $panier[0]->getId();
-            $panier_content = $this->getDoctrine()->getRepository(LignePanier::class)->find_lines($id_panier);
+            $panier_content = $_POST;
         }
 
         $i = 0;

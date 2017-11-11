@@ -32,7 +32,7 @@ class LignePanierRepository extends \Doctrine\ORM\EntityRepository
     public function update($ligne)
     {
 
-        dump($ligne);
+        // dump($ligne);
         $sql = '
                     UPDATE ligne_panier
                     SET pu_article = :prix, quantite = :quantite
@@ -42,7 +42,7 @@ class LignePanierRepository extends \Doctrine\ORM\EntityRepository
         $em = $this->getEntityManager();
         $dbh = $em->getConnection();
         $query = $dbh->prepare($sql);
-        $results = $query->execute([ "id_ligne" => $ligne->id,":prix" => $ligne->prix_sandwich], ":quantite" => $ligne->quantite);
+        $results = $query->execute([ "id_ligne" => $ligne->id,":prix" => $ligne->prix_sandwich, ":quantite" => $ligne->quantite]);
         return true;
     }
 }

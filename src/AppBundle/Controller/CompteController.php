@@ -47,13 +47,8 @@ class CompteController extends Controller
     // @Xavier
     public function panierAction()
     {
-        // Entity manager
-        // REquest
-        // print datas in JSON
 
         $id = $this->getUser();
-        // dump($id);
-
         // Verification que l'utilisateur est connecté et qu'on peut bien recuperer son id.
         if(!isset($id) || empty($id))
         {
@@ -61,8 +56,7 @@ class CompteController extends Controller
         }
 
         // Recuperation du panier en DB. (infos de base)
-        $panier = $this->getDoctrine()->getRepository(Panier::class)->getPanierForUser(3);
-        // dump($panier);
+        $panier = $this->getDoctrine()->getRepository(Panier::class)->getPanierForUser($id);
 
         // Si aucun panier n'a été trouvé.
         if(!isset($panier) || empty($panier))
@@ -76,9 +70,7 @@ class CompteController extends Controller
             $panier_content = $this->getDoctrine()->getRepository(LignePanier::class)->find_lines($id_panier);
         }
 
-        // dump($panier_content);
         $i = 0;
-
         foreach($panier_content as $key)
         {
             $sandwich = $this->getDoctrine()->getRepository(Sandwich::class)->find($key["sandwich_id"]);
@@ -103,10 +95,8 @@ class CompteController extends Controller
 
             $panier_content[$i]["nom_sandwich"] = $sandwich->getNom();
             $panier_content[$i]["prix_sandwich"] = $prixTotal;
-
             $i++;
         }
-        // dump($panier_content);
         
         return $this->render('AppBundle:Compte:panier.html.twig', ["panier_content" => $panier_content, "panier_id" => $id_panier]);
 
@@ -149,26 +139,150 @@ class CompteController extends Controller
             throw new Exception('Impossible d\'accéder à votre identifiant d\'utilisateur. Etes vous bien connecté !?');
         }
 
+
+        $panier = $this->getDoctrine()->getRepository(Panier::class)->getPanierForUser($id);
+
+        if(!isset($panier) || empty($panier))
+        {
+            throw new Exception('Aucun panier vous appartenant n\'a été trouvé !');
+            // Creer un nouveau panier.
+
+            // $panier = new Panier();
+
+            // Probleme : Contenu du panier vide ...... Et pas les infos pour les faire.
+            // (Devrait être fait en JS / ajax sur la partie de fidel ? )
+        }
+        else
+        {
+            // Récupération du contenu du panier
+            $id_panier = $panier[0]->getId();
+            $panier_content = $this->getDoctrine()->getRepository(LignePanier::class)->find_lines($id_panier);
+        }
+
+        $i = 0;
+        foreach($panier_content as $key)
+        {
+            $sandwich = $this->getDoctrine()->getRepository(Sandwich::class)->find($key["sandwich_id"]);
+            $prixPain = $this->getDoctrine()->getRepository(Pain::class)->find($sandwich->getPain()->getId());
+            $prixGarniture = $this->getDoctrine()->getRepository(SandwichGarniture::class)->findBySandwichId($sandwich->getId());
+            
+            $prixPain = $prixPain->getPrix();
+
+            $temp_prix = array();
+            foreach ($prixGarniture as $key2)
+            {
+                $prixGarniture2 = $this->getDoctrine()->getRepository(Garniture::class)->find($key2["garniture_id"]);
+                array_push($temp_prix,$prixGarniture2);
+            }
+           
+            $prixTotal = 0;
+            $prixTotal += $prixPain;
+            foreach ($temp_prix as $key3)
+            {
+                $prixTotal += $key3->getPrix();
+            }
+
+            $panier_content[$i]["nom_sandwich"] = $sandwich->getNom();
+            $panier_content[$i]["prix_sandwich"] = $prixTotal;
+            $i++;
+        }
+
+        $LignePanierRepository = $this->getDoctrine()->getRepository(LignePanier::class);
+        foreach ($panier_content as $key)
+        {
+            $LignePanierRepository->update($key);
+        }
+
+
+    //     // LIGNE DE PANIER !!!
+    //     public function savePanierForUser($user_id, $panier_infos)
+    //     {
+    //     $sql = "
+    //                 INSERT INTO
+    //                 VALUES 
+    //     ";
+
+    //     $em = $this->getEntityManager();
+    //     $dbh = $em->getConnection();
+        
+    //     $query = $dbh->prepare($sql);
+    //     $query->execute();
+    // }
+
         return new Response('true');
         // dump($_POST);
     }
 
     // NO ROUTE DEFINED FOR NOW !
     // A refaire avec une méthode dans le repo.
-    public function validerCommandeAction()
+    public function validerCommandeAction($id)
     {
-        // $em = $this->container->get('doctrine.orm.default_entity_manager');
-        // $CommandeRepository = $em->getRepository(Commande::class);
+        // RECUPERATION DU PANIER : 
+        $id = $this->getUser();
+        // Verification que l'utilisateur est connecté et qu'on peut bien recuperer son id.
+        if(!isset($id) || empty($id))
+        {
+            throw new Exception('Impossible d\'accéder à votre identifiant d\'utilisateur. Etes vous bien connecté !?');
+        }
 
-        // $commande = new Commande();
-        // $commande->setPanier();
-        // $commande->setProcessed(true);
-        // $commande->setLivree(false);
+        // Recuperation du panier en DB. (infos de base)
+        $panier = $this->getDoctrine()->getRepository(Panier::class)->getPanierForUser($id);
 
+        // Si aucun panier n'a été trouvé.
+        if(!isset($panier) || empty($panier))
+        {
+            throw new Exception('Aucun panier vous appartenant n\'a été trouvé !');
+        }
+        else
+        {
+            // Récupération du contenu du panier
+            $id_panier = $panier[0]->getId();
+            $panier_content = $this->getDoctrine()->getRepository(LignePanier::class)->find_lines($id_panier);
+        }
 
-        // I think the manager has nothing to do in my case.
-        // $manager->persist($commande);
-        // $manager->flush();
+        $i = 0;
+        foreach($panier_content as $key)
+        {
+            $sandwich = $this->getDoctrine()->getRepository(Sandwich::class)->find($key["sandwich_id"]);
+            $prixPain = $this->getDoctrine()->getRepository(Pain::class)->find($sandwich->getPain()->getId());
+            $prixGarniture = $this->getDoctrine()->getRepository(SandwichGarniture::class)->findBySandwichId($sandwich->getId());
+            
+            $prixPain = $prixPain->getPrix();
+
+            $temp_prix = array();
+            foreach ($prixGarniture as $key2)
+            {
+                $prixGarniture2 = $this->getDoctrine()->getRepository(Garniture::class)->find($key2["garniture_id"]);
+                array_push($temp_prix,$prixGarniture2);
+            }
+           
+            $prixTotal = 0;
+            $prixTotal += $prixPain;
+            foreach ($temp_prix as $key3)
+            {
+                $prixTotal += $key3->getPrix();
+            }
+
+            $panier_content[$i]["nom_sandwich"] = $sandwich->getNom();
+            $panier_content[$i]["prix_sandwich"] = $prixTotal;
+            $i++;
+        }
+
+        // MAJ des lignes de panier pour ajouter le prix de chaque ligne (le tout forme maintenant une commande.)
+        $LignePanierRepository = $this->getDoctrine()->getRepository(LignePanier::class);
+        foreach($panier_content as $key)
+        {
+            $LignePanierRepository->update((Object)$key);
+        }
+
+        $commande = new Commande();
+        $commande->setPanier($panier[0]);
+        $commande->setProcessed(false);
+        $commande->setLivree(false);
+
+        $CommandeRepository = $this->getDoctrine()->getRepository(Commande::class)->insert($commande);
+
         return new Response("true");
+        // REtourner une vue ! 
     }
 }

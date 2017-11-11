@@ -174,9 +174,9 @@ class Commande
      *
      * @return Commande
      */
-    public function setDate($date)
+    public function setDate()
     {
-        $this->date = $date;
+        $this->date = new \Datetime("now");
 
         return $this;
     }

@@ -11,7 +11,7 @@ class LignePanierRepository extends \Doctrine\ORM\EntityRepository
     // PRoblem here !
     public function find_lines($panier_id)
     {
-     	dump($panier_id);
+     	// dump($panier_id);
 
      	$sql =
      	'
@@ -33,8 +33,23 @@ class LignePanierRepository extends \Doctrine\ORM\EntityRepository
         $results = $query->execute([":panier_id" => $panier_id]);
         $results = $query->fetchAll();
 
-        dump($results);
+        // dump($results);
 
         return $results;
+    }
+
+    public function update($ligne)
+    {
+
+        dump($ligne);
+        $sql = '
+                    UPDATE ligne_panier SET pu_article = :prix WHERE id = :id_ligne
+        ';
+
+        $em = $this->getEntityManager();
+        $dbh = $em->getConnection();
+        $query = $dbh->prepare($sql);
+        $results = $query->execute([ "id_ligne" => $ligne->id,":prix" => $ligne->prix_sandwich]);
+        return true;
     }
 }

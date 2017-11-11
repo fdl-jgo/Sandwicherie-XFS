@@ -22,4 +22,26 @@ class CommandeRepository extends \Doctrine\ORM\EntityRepository
 
 		return $results;
 	}
+
+	public function insert($commande)
+	{
+
+		// dump($commande);
+
+		$sql = 'INSERT INTO commande VALUES ( null , :id_panier, :id_address, :processed, :livre, NOW())';
+
+		$em = $this->getEntityManager();
+		$dbh = $em->getConnection();
+		$query = $dbh->prepare($sql);
+		
+		$results = $query->execute([
+										":id_panier" => $commande->getPanier()->getId(),
+										":id_address" => $commande->getAdresseLivraison() ?  $commande->getAdresseLivraison()->getId() : null,
+										":processed" => $commande->getProcessed(),
+										":livre" => $commande->getLivree(),
+									]);
+
+		// dump($query);
+		return true;
+	}
 }

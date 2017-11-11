@@ -8,7 +8,7 @@
 
 {% block body %}
 <div class="container">
-<h2>Votre panier :</h2>
+<h2>Vos précédentes commandes :</h2>
 <table class="display table table-hover table-bordered">
         <thead>
             <tr>
@@ -33,10 +33,10 @@
         <tbody>
         	{% for item in liste_commande %}
             <tr>
-                <td>{item.id}</td>
+                <td>{{item.id}}</td>
                 <td></td>
-                <td>item.nb_articles</td>
-                <td>item.prix</td>
+                <td>{{item.nb_articles}}</td>
+                <td>{{item.prix}}</td>
                 <td><a href="{{ path('commande', {'id' : item.id}) }}">Voir détails</a></td>
             </tr>
         {% endfor %}

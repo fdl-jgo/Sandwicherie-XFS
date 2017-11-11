@@ -12,14 +12,22 @@ class CommandeRepository extends \Doctrine\ORM\EntityRepository
 {
 	public function getAllCommandesForUser($id_user)
 	{
-		$sql = " SELECT * FROM commande WHERE id = :id_user ORDER BY id DESC";
+		dump($id_user);
+		$sql = '	SELECT commande.*,
+					(SELECT SUM(ligne_panier.quantite) FROM ligne_panier WHERE ligne_panier.panier_id = commande.panier_id) AS nb_article,
+					(SELECT SUM(ligne_panier.quantite * ligne_panier.pu_article) FROM ligne_panier WHERE ligne_panier.panier_id = commande.panier_id) AS prix
+					FROM commande
+					LEFT JOIN panier ON commande.panier_id = panier.id
+					LEFT JOIN ligne_panier ON ligne_panier.panier_id = commande.panier_id
+					WHERE panier.utilisateur_id = :id_user
+					ORDER BY date DESC';
 
 		$em = $this->getEntityManager();
 		$dbh = $em->getConnection();
 		$query = $dbh->prepare($sql);
 		$results = $query->execute([":id_user" => $id_user]);
 		$results = $query->fetchAll();
-
+		dump($results);
 		return $results;
 	}
 

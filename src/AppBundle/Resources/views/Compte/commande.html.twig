@@ -1,4 +1,4 @@
-{% extends '::base.html.twig' %}
+{% extends 'AppBundle::layout.html.twig' %}
 
 {% block stylesheets %}
 {% endblock %}
@@ -6,77 +6,14 @@
 {% block stylesheets_custom %} 
 {% endblock %}
 
-{% block header %}
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="{{ path('app_homepage') }}">SANDWICHERIE-XFS</a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="{{ path('app_homepage') }}">Home</a></li>
-                    <li><a href="{{ path('app_sandwichspage') }}">Sandwichs</a></li>
-                    <li><a href="{{ path('app_contactpage') }}">Contact</a></li>
-                    {#<li class="dropdown">#}
-                        {#<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>#}
-                        {#<ul class="dropdown-menu">#}
-                            {#<li><a href="#">Action</a></li>#}
-                            {#<li><a href="#">Another action</a></li>#}
-                            {#<li><a href="#">Something else here</a></li>#}
-                            {#<li role="separator" class="divider"></li>#}
-                            {#<li class="dropdown-header">Nav header</li>#}
-                            {#<li><a href="#">Separated link</a></li>#}
-                            {#<li><a href="#">One more separated link</a></li>#}
-                        {#</ul>#}
-                    {#</li>#}
-                </ul>
-
-                <ul class="nav navbar-nav navbar-right">
-                    {#class active#}
-                    {% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mon compte <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{{ path('fos_user_registration_register') }}">S'enregistrer</a></li>
-                                <li><a href="{{ path('fos_user_security_login') }}">Se connecter</a></li>
-                                <li><a href="#">Mot de passe oublié</a></li>
-                            </ul>
-                        </li>
-                    {% else %}
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> {{ app.user.username }} <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Parametre</a></li>
-                                <li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
-                            </ul>
-                        </li>
-                    {% endif %}
-
-                    <li><a href="#">Panier</a></li>
-                </ul>
-
-            </div><!--/.nav-collapse -->
-        </div>
-    </nav>
-{% endblock %}
-
 
 {% block body %}
 
 <div class="container">
-<h2>Votre commande :</h2>
+<h2>Votre commande n° {{commande.id}} </h2><br /> <h3>Passée en date du : {{commande.date.date}}</h3>
 <table class="display table table-hover table-bordered">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Sandwich</th>
                 <th>Prix Unitaire</th>
                 <th>Quantité</th>
@@ -85,7 +22,6 @@
         </thead>
         <tfoot>
             <tr>
-                <th>ID</th>
                 <th>Sandwich</th>
                 <th>Prix Unitaire</th>
                 <th>Quantité</th>
@@ -93,29 +29,17 @@
             </tr>
         </tfoot>
         <tbody>
-            <tr>
-                <td>2</td>
-                <td>Club</td>
-                <td>4€</td>
-                <td>3</td>
-                <td>12€</td>
-            </tr>
+            {% for item in panier %}
+           <tr>
 
-            <tr>
-                <td>2</td>
-                <td>Custom : poulet, salade, tomates</td>
-                <td>3.5€</td>
-                <td>1</td>
-                <td>3.5€</td>
+            <td>{{item.nom_sandwich}}</td>
+            <td>{{item.prix_sandwich }}</td>
+                <td>
+                    <input type="number" class="sandwich-quantity" id="sandwich-{{ item.id }}" name="sandwich-{{ item.id }}" value="{{item.quantite}}" disabled />
+              </td>
+                <td>{{item.prix_sandwich * item.quantite}} €</td>
             </tr>
-
-            <tr>
-                <td>2</td>
-                <td>Custom : Poulet, dinde, rosbif, avocats, huile d'olive</td>
-                <td>6€</td>
-                <td>1</td>
-                <td>6€</td>
-            </tr>
+        {% endfor %}
         </tbody>
 </table>
 </div>

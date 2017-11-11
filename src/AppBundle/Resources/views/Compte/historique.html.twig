@@ -34,8 +34,8 @@
         	{% for item in liste_commande %}
             <tr>
                 <td>{{item.id}}</td>
-                <td></td>
-                <td>{{item.nb_articles}}</td>
+                <td>{{item.date}}</td>
+                <td>{{item.nb_article}}</td>
                 <td>{{item.prix}}</td>
                 <td><a href="{{ path('commande', {'id' : item.id}) }}">Voir détails</a></td>
             </tr>

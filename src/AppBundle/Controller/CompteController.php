@@ -14,7 +14,7 @@ use AppBundle\Entity\Commande;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Response;
-
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class CompteController extends Controller
 {
@@ -25,8 +25,61 @@ class CompteController extends Controller
     public function commandeAction($id)
     {
         $commande = $this->getDoctrine()->getRepository(Commande::class)->find($id);
-        dump($commande);
-        return $this->render('AppBundle:Compte:commande.html.twig', ["commande" => $commande]);
+        // dump($commande);
+
+        $id = $this->getUser();
+        // Verification que l'utilisateur est connecté et qu'on peut bien recuperer son id.
+        if(!isset($id) || empty($id))
+        {
+            throw new Exception('Impossible d\'accéder à votre identifiant d\'utilisateur. Etes vous bien connecté !?');
+        }
+
+        // Recuperation du panier en DB. (infos de base)
+        // dump($commande);
+        $panier = $this->getDoctrine()->getRepository(Panier::class)->find($commande->getPanier()->getId());
+
+        // Si aucun panier n'a été trouvé.
+        if(!isset($panier) || empty($panier))
+        {
+            throw new Exception('Aucun panier vous appartenant n\'a été trouvé !');
+        }
+        else
+        {
+            // Récupération du contenu du panier
+            $id_panier = $panier->getId();
+            $panier_content = $this->getDoctrine()->getRepository(LignePanier::class)->find_lines($id_panier);
+        }
+
+        $i = 0;
+        foreach($panier_content as $key)
+        {
+            $sandwich = $this->getDoctrine()->getRepository(Sandwich::class)->find($key["sandwich_id"]);
+            $prixPain = $this->getDoctrine()->getRepository(Pain::class)->find($sandwich->getPain()->getId());
+            $prixGarniture = $this->getDoctrine()->getRepository(SandwichGarniture::class)->findBySandwichId($sandwich->getId());
+            
+            $prixPain = $prixPain->getPrix();
+
+            $temp_prix = array();
+            foreach ($prixGarniture as $key2)
+            {
+                $prixGarniture2 = $this->getDoctrine()->getRepository(Garniture::class)->find($key2["garniture_id"]);
+                array_push($temp_prix,$prixGarniture2);
+            }
+           
+            $prixTotal = 0;
+            $prixTotal += $prixPain;
+            foreach ($temp_prix as $key3)
+            {
+                $prixTotal += $key3->getPrix();
+            }
+
+            $panier_content[$i]["nom_sandwich"] = $sandwich->getNom();
+            $panier_content[$i]["prix_sandwich"] = $prixTotal;
+            $i++;
+        }
+
+        // dump($commande);
+        return $this->render('AppBundle:Compte:commande.html.twig', ["panier" => $panier_content, "commande" => $commande]);
     }
 
     // @Xavier
@@ -39,7 +92,7 @@ class CompteController extends Controller
         }
 
 
-        $liste_commande = $this->getDoctrine()->getRepository(Commande::class)->getAllCommandesForUser($id);
+        $liste_commande = $this->getDoctrine()->getRepository(Commande::class)->getAllCommandesForUser($id->getId());
         dump($liste_commande);
         return $this->render('AppBundle:Compte:historique.html.twig', ["liste_commande" => $liste_commande]);
     }
@@ -190,7 +243,7 @@ class CompteController extends Controller
         $LignePanierRepository = $this->getDoctrine()->getRepository(LignePanier::class);
         foreach ($panier_content as $key)
         {
-            $LignePanierRepository->update($key);
+            $LignePanierRepository->update((Object)$key);
         }
 
 
@@ -274,7 +327,7 @@ class CompteController extends Controller
         {
             $LignePanierRepository->update((Object)$key);
         }
-
+        // dump($panier);
         $commande = new Commande();
         $commande->setPanier($panier[0]);
         $commande->setProcessed(false);
@@ -282,7 +335,17 @@ class CompteController extends Controller
 
         $CommandeRepository = $this->getDoctrine()->getRepository(Commande::class)->insert($commande);
 
-        return new Response("true");
+
+        // return new RedirectResponse($this->generateUrl(''));
+
+        $response = new Response("<p>Votre commande a bien été prise en compte. <br />Vous serez redirigé vers l'historique des commandes dans 5s.</p>");
+
+        $response->setStatusCode(200);
+        $response->headers->set('Refresh', '5; '. $this->generateUrl('historique'));
+
+        // $response->send();
+
+        return $response;
         // REtourner une vue ! 
     }
 }

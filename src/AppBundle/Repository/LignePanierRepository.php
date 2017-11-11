@@ -18,15 +18,6 @@ class LignePanierRepository extends \Doctrine\ORM\EntityRepository
      	SELECT * FROM ligne_panier WHERE ligne_panier.panier_id = :panier_id
      	';
 
-        // $sql =
-        // 'SELECT *, garniture.nom AS nom_garniture, sandwich.nom AS nom_sandwich
-        // FROM ligne_panier
-        // LEFT JOIN sandwich ON ligne_panier.sandwich_id = sandwich.id
-        // LEFT JOIN sandwich_garniture ON sandwich_garniture.sandwich_id = sandwich.id
-        // LEFT JOIN garniture ON sandwich_garniture.garniture_id = garniture.id
-        // LEFT JOIN pain ON sandwich.pain_id = pain.id
-        // WHERE ligne_panier.panier_id = :panier_id';
-
         $em = $this->getEntityManager();
         $dbh = $em->getConnection();
         $query = $dbh->prepare($sql);
@@ -43,13 +34,15 @@ class LignePanierRepository extends \Doctrine\ORM\EntityRepository
 
         dump($ligne);
         $sql = '
-                    UPDATE ligne_panier SET pu_article = :prix WHERE id = :id_ligne
+                    UPDATE ligne_panier
+                    SET pu_article = :prix, quantite = :quantite
+                    WHERE id = :id_ligne
         ';
 
         $em = $this->getEntityManager();
         $dbh = $em->getConnection();
         $query = $dbh->prepare($sql);
-        $results = $query->execute([ "id_ligne" => $ligne->id,":prix" => $ligne->prix_sandwich]);
+        $results = $query->execute([ "id_ligne" => $ligne->id,":prix" => $ligne->prix_sandwich], ":quantite" => $ligne->quantite);
         return true;
     }
 }

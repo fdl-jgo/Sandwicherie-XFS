@@ -44,6 +44,13 @@ class LignePanier
      */
     private $panier;
 
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="pu_article", type="float", nullable=true)
+     */
+    private $pu;
+
 
     /**
      * Get id

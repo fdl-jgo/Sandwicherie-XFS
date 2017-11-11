@@ -10,6 +10,7 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Doctrine\DBAL\Types\DateTimeType;
 use Faker\Factory;
 
 
@@ -45,6 +46,7 @@ class LoadCommandeData extends AbstractFixture implements ContainerAwareInterfac
         $commande->setPanier($paniers[0]);
         $commande->setProcessed(true);
         $commande->setLivree(false);
+        // $commande->setDate(new \Datetime("now"));
         $manager->persist($commande);
 
         $manager->flush();

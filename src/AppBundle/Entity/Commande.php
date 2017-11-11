@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\DBAL\Types\DateTimeType;
 
 /**
  * Commande
@@ -50,6 +51,14 @@ class Commande
      * @ORM\JoinColumn(name="adresse_livraison_id", referencedColumnName="id")
      */
     private $adresseLivraison;
+
+
+     /**
+     * @var datetime
+     * @ORM\Column(name="date", type="datetime", nullable=true)
+     */
+    private $date;
+
 
 
     /**
@@ -156,5 +165,29 @@ class Commande
     public function getAdresseLivraison()
     {
         return $this->adresseLivraison;
+    }
+
+    /**
+     * Set processed
+     *
+     * @param datetime $date
+     *
+     * @return Commande
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get livree
+     *
+     * @return datetime
+     */
+    public function getDate()
+    {
+        return $this->date;
     }
 }
